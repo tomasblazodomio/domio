@@ -1,0 +1,304 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  --domio-green:       #2D6A4F;
+  --domio-green-dark:  #1B4332;
+  --domio-green-light: #40916C;
+  --domio-green-pale:  #D8F3DC;
+  --domio-gold:        #B7881C;
+  --domio-gold-pale:   #FFF8E7;
+  --domio-text:        #1A1A2E;
+  --domio-muted:       #6B7280;
+  --domio-border:      #E5E7EB;
+  --domio-bg:          #F9FAFB;
+  --domio-error:       #DC2626;
+  --radius:            8px;
+  --shadow:            0 2px 16px rgba(0,0,0,0.07);
+  --transition:        0.2s ease;
+}
+
+body { font-family: 'DM Sans', sans-serif; -webkit-text-size-adjust: 100%; }
+
+.domio-navbar,
+.domio-navbar.w-nav {
+  background-color: #1B4332 !important;
+  box-shadow: none !important;
+  border-bottom: none !important;
+}
+.domio-navbar .w-nav-link,
+.domio-navbar .w-nav-link:visited {
+  color: rgba(255,255,255,0.9) !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 500 !important;
+  transition: color 0.2s ease !important;
+}
+.domio-navbar .w-nav-link:hover { color: #B7E4C7 !important; }
+.domio-navbar .w-icon-nav-menu { color: #ffffff !important; }
+.domio-navbar .w-nav-overlay { background-color: #1B4332 !important; }
+
+.domio-logo {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 800 !important;
+  font-size: 22px !important;
+  letter-spacing: -1px !important;
+  color: #ffffff !important;
+}
+
+.domio-hero-section,
+.domio-hero-section.w-section {
+  background-color: #1B4332 !important;
+  padding: 56px 20px 48px !important;
+  text-align: center;
+}
+.domio-h1 {
+  font-family: 'DM Sans', sans-serif !important;
+  color: #ffffff !important;
+  font-size: clamp(24px, 4vw, 42px) !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
+  margin: 0 auto 14px !important;
+  max-width: 620px;
+}
+.domio-hero-subtitle {
+  color: rgba(255,255,255,0.8);
+  font-size: 16px;
+  max-width: 500px;
+  margin: 0 auto 32px;
+  line-height: 1.65;
+}
+
+.domio-form-card,
+.domio-form-card.w-div {
+  background: #ffffff !important;
+  border-radius: 16px !important;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.18) !important;
+  max-width: 480px !important;
+  margin: 0 auto !important;
+  padding: 32px 28px !important;
+  text-align: left;
+}
+.domio-form-card h1,
+.domio-form-card h2 {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 22px !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  color: #1A1A2E !important;
+  margin: 0 0 20px !important;
+  letter-spacing: -0.3px !important;
+}
+
+#input-length, #input-width, #input-name, #input-email,
+#input-subtype, #input-painting-type, #input-height, #input-custom-area {
+  width: 100%; height: 52px; padding: 0 16px !important;
+  font-size: 16px !important; font-family: 'DM Sans', sans-serif;
+  color: var(--domio-text); background: #fff;
+  border: 1.5px solid var(--domio-border) !important;
+  border-radius: var(--radius) !important; box-sizing: border-box;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  -webkit-appearance: none; appearance: none; outline: none;
+  margin-bottom: 12px; display: block;
+}
+#input-length:focus, #input-width:focus, #input-name:focus,
+#input-email:focus, #input-subtype:focus,
+#input-painting-type:focus, #input-height:focus, #input-custom-area:focus {
+  border-color: var(--domio-green-light) !important;
+  box-shadow: 0 0 0 3px rgba(64,145,108,0.15);
+}
+#input-subtype, #input-painting-type {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center;
+  background-color: #fff; padding-right: 44px !important; cursor: pointer;
+}
+
+.domio-mode-tabs { display: flex; gap: 8px; margin-bottom: 20px; }
+.domio-mode-tab {
+  flex: 1; padding: 10px 8px; border-radius: var(--radius);
+  border: 1.5px solid var(--domio-border); background: #fff;
+  color: var(--domio-muted); font-family: 'DM Sans', sans-serif;
+  font-size: 14px; font-weight: 600; cursor: pointer;
+  transition: all var(--transition); text-align: center;
+}
+.domio-mode-tab.active { background: var(--domio-green); color: #fff; border-color: var(--domio-green); }
+.domio-mode-tab:hover:not(.active) { border-color: var(--domio-green-light); color: var(--domio-green); }
+
+.domio-area-mode-tabs { display: flex; gap: 8px; margin-bottom: 12px; }
+.domio-area-mode-tab {
+  flex: 1; padding: 8px 6px; border-radius: var(--radius);
+  border: 1.5px solid var(--domio-border); background: #fff;
+  color: var(--domio-muted); font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 600; cursor: pointer;
+  transition: all var(--transition); text-align: center;
+}
+.domio-area-mode-tab.active { background: var(--domio-green); color: #fff; border-color: var(--domio-green); }
+.domio-area-mode-tab:hover:not(.active) { border-color: var(--domio-green-light); color: var(--domio-green); }
+
+.domio-penetration-wrap {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px; padding: 10px 14px;
+  background: var(--domio-bg); border-radius: var(--radius);
+  border: 1.5px solid var(--domio-border);
+}
+.domio-penetration-wrap input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; accent-color: var(--domio-green); flex-shrink: 0; margin: 0; }
+.domio-penetration-wrap label { font-size: 13px; color: var(--domio-text); cursor: pointer; line-height: 1.4; }
+
+.domio-row-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.domio-row-inputs #input-length,
+.domio-row-inputs #input-width { margin-bottom: 0; }
+
+#btn-calculate, #btn-submit {
+  width: 100%; height: 54px; font-size: 16px !important; font-weight: 600;
+  font-family: 'DM Sans', sans-serif; border: none;
+  border-radius: var(--radius) !important; cursor: pointer;
+  transition: all var(--transition); display: flex;
+  align-items: center; justify-content: center; gap: 8px;
+  margin-top: 12px; margin-bottom: 0; position: relative;
+}
+#btn-calculate { background: var(--domio-green) !important; color: #fff !important; box-shadow: 0 4px 14px rgba(45,106,79,0.35); }
+#btn-calculate:hover { background: var(--domio-green-light) !important; transform: translateY(-1px); }
+#btn-submit { background: var(--domio-gold) !important; color: #fff !important; box-shadow: 0 4px 14px rgba(183,136,28,0.35); }
+#btn-submit:hover { background: #a07818 !important; transform: translateY(-1px); }
+#btn-calculate:disabled, #btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+.domio-spinner {
+  width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: #fff; border-radius: 50%;
+  animation: spin 0.7s linear infinite; display: none; position: absolute;
+}
+.domio-btn-loading .domio-spinner { display: block; }
+.domio-btn-loading .domio-btn-text { visibility: hidden; }
+
+.domio-content-wrap { max-width: 560px; margin: 0 auto; padding: 32px 16px 64px; }
+
+#domio-area-box {
+  display: none; text-align: center; padding: 28px 20px 24px;
+  background: #fff; border: 1.5px solid var(--domio-border);
+  border-radius: 12px; margin-top: 16px; box-shadow: var(--shadow);
+}
+#domio-area-box.visible { display: block; animation: fadeUp 0.35s ease; }
+.area-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--domio-muted); margin-bottom: 6px; }
+.area-number { font-size: 64px; font-weight: 700; color: var(--domio-green); line-height: 1; margin-bottom: 4px; letter-spacing: -0.02em; }
+.area-unit { font-size: 22px; font-weight: 400; color: var(--domio-muted); }
+
+#domio-blur-box {
+  display: none; background: #fff; border: 1.5px solid var(--domio-border);
+  border-radius: 12px; margin-top: 12px; box-shadow: var(--shadow); overflow: hidden;
+}
+#domio-blur-box.visible { display: block; animation: fadeUp 0.4s ease 0.1s both; }
+.blur-header { background: var(--domio-bg); padding: 12px 20px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--domio-muted); border-bottom: 1px solid var(--domio-border); }
+.blur-row { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--domio-border); gap: 12px; }
+.blur-row:last-of-type { border-bottom: none; }
+.blur-row-label { font-size: 14px; color: var(--domio-text); font-weight: 500; display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.blur-row-value { font-size: 18px; font-weight: 700; color: var(--domio-text); filter: blur(6px); user-select: none; -webkit-user-select: none; transition: filter 0.6s ease; white-space: nowrap; }
+.blur-row.is-total { background: var(--domio-green-pale); padding: 20px; }
+.blur-row.is-total .blur-row-label { font-size: 15px; font-weight: 600; color: var(--domio-green); }
+.blur-row.is-total .blur-row-value { font-size: 26px; color: var(--domio-green); filter: blur(8px); }
+.blur-lock { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 20px 14px; font-size: 12px; color: var(--domio-muted); }
+
+#domio-teaser-box {
+  display: none; background: linear-gradient(135deg, #1B4332 0%, #2D6A4F 100%);
+  border-radius: 12px; padding: 28px 24px; margin-top: 16px; color: #fff;
+}
+#domio-teaser-box.visible { display: block; animation: fadeUp 0.45s ease 0.15s both; }
+.teaser-badge { display: inline-block; background: rgba(255,255,255,0.15); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; }
+.teaser-headline { font-size: clamp(18px, 5vw, 24px); font-weight: 700; line-height: 1.3; margin-bottom: 10px; }
+.teaser-headline span { color: #B7E4C7; }
+.teaser-body { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.6; margin-bottom: 16px; }
+.teaser-free { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 10px 14px; font-size: 13px; color: rgba(255,255,255,0.9); margin-bottom: 20px; width: 100%; box-sizing: border-box; }
+.teaser-free strong { color: #fff; }
+.teaser-form-title { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 12px; }
+
+#domio-name-slot input, #domio-email-slot input,
+#domio-name-slot, #domio-email-slot {
+  width: 100% !important; background: rgba(255,255,255,0.12) !important;
+  border: 1.5px solid rgba(255,255,255,0.25) !important;
+  border-radius: var(--radius) !important; color: #fff !important;
+  height: 52px; padding: 0 16px !important; font-size: 16px !important;
+  font-family: 'DM Sans', sans-serif; box-sizing: border-box;
+  margin-bottom: 10px; display: block; -webkit-appearance: none; outline: none;
+}
+#domio-name-slot input::placeholder, #domio-email-slot input::placeholder { color: rgba(255,255,255,0.5); }
+#domio-name-slot input:focus, #domio-email-slot input:focus {
+  border-color: rgba(255,255,255,0.6) !important; background: rgba(255,255,255,0.18) !important;
+}
+
+#domio-success-msg {
+  display: none; background: var(--domio-green-pale); border: 1.5px solid var(--domio-green-light);
+  border-radius: 12px; padding: 28px 20px; text-align: center; margin-top: 16px;
+}
+#domio-success-msg.visible { display: block; animation: fadeUp 0.3s ease; }
+#domio-success-msg .s-icon { font-size: 40px; margin-bottom: 10px; }
+#domio-success-msg h3 { font-size: 20px; font-weight: 700; color: var(--domio-green); margin: 0 0 8px; }
+#domio-success-msg p { font-size: 14px; color: var(--domio-muted); margin: 0; line-height: 1.6; }
+
+#domio-craftsman-box {
+  display: none; background: #fff; border: 1.5px solid var(--domio-border);
+  border-radius: 12px; padding: 24px 20px; margin-top: 16px; box-shadow: var(--shadow);
+}
+#domio-craftsman-box.visible { display: block; animation: fadeUp 0.4s ease; }
+.craftsman-header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+.craftsman-header span { font-size: 24px; }
+.craftsman-header h4 { font-size: 16px; font-weight: 700; color: var(--domio-text); margin: 0; }
+.craftsman-subtitle { font-size: 13px; color: var(--domio-muted); margin: 0 0 16px; line-height: 1.5; }
+.craftsman-input {
+  width: 100%; height: 48px; padding: 0 14px;
+  font-size: 15px; font-family: 'DM Sans', sans-serif;
+  color: var(--domio-text); background: #fff;
+  border: 1.5px solid var(--domio-border);
+  border-radius: var(--radius); box-sizing: border-box;
+  outline: none; margin-bottom: 10px; display: block;
+  -webkit-appearance: none; appearance: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.craftsman-input:focus { border-color: var(--domio-green-light); box-shadow: 0 0 0 3px rgba(64,145,108,0.15); }
+#btn-craftsman {
+  width: 100%; height: 50px; font-size: 15px; font-weight: 600;
+  font-family: 'DM Sans', sans-serif; border: none;
+  border-radius: var(--radius); cursor: pointer;
+  background: var(--domio-green); color: #fff;
+  box-shadow: 0 4px 14px rgba(45,106,79,0.3);
+  transition: all var(--transition); position: relative;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+#btn-craftsman:hover { background: var(--domio-green-light); transform: translateY(-1px); }
+#btn-craftsman:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+#domio-craftsman-success { display: none; text-align: center; padding: 12px 0 4px; }
+#domio-craftsman-success p { font-size: 14px; color: var(--domio-green); font-weight: 600; margin: 0; }
+
+.domio-field-error { color: var(--domio-error); font-size: 13px; margin-top: -8px; margin-bottom: 8px; display: none; }
+.domio-input-error { border-color: var(--domio-error) !important; }
+
+.domio-trust { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin: 16px 0 0; }
+.domio-trust-item { font-size: 13px; color: rgba(255,255,255,0.75); display: flex; align-items: center; gap: 4px; }
+
+.domio-other-calcs { margin-top: 32px; }
+.domio-section-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--domio-muted); text-align: center; margin-bottom: 14px; }
+.domio-calc-list { display: grid; grid-template-columns: 1fr; gap: 10px; }
+.domio-calc-item { background: #fff; border: 1.5px solid var(--domio-border); border-radius: var(--radius); padding: 14px 16px; display: flex; align-items: center; gap: 12px; }
+.domio-calc-item.is-active { border-color: var(--domio-green-light); background: var(--domio-green-pale); }
+.calc-icon { font-size: 24px; width: 42px; height: 42px; background: var(--domio-bg); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.domio-calc-item.is-active .calc-icon { background: rgba(255,255,255,0.6); }
+.calc-text { flex: 1; }
+.calc-text h4 { font-size: 15px; font-weight: 600; margin: 0 0 2px; }
+.calc-text p { font-size: 13px; color: var(--domio-muted); margin: 0; }
+.calc-pill { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; flex-shrink: 0; white-space: nowrap; }
+.pill-active { background: var(--domio-green); color: #fff; }
+.pill-soon { background: var(--domio-gold-pale); color: var(--domio-gold); }
+.pill-prep { background: var(--domio-bg); color: var(--domio-muted); border: 1px solid var(--domio-border); }
+.domio-notify { display: none; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(64,145,108,0.2); gap: 8px; }
+.domio-notify.open { display: flex; }
+.domio-notify input { flex: 1; height: 40px; padding: 0 12px; font-size: 14px; font-family: 'DM Sans', sans-serif; border: 1.5px solid var(--domio-border); border-radius: 6px; outline: none; -webkit-appearance: none; min-width: 0; }
+.domio-notify input:focus { border-color: var(--domio-green-light); }
+.domio-notify button { height: 40px; padding: 0 14px; font-size: 13px; font-weight: 600; font-family: 'DM Sans', sans-serif; background: var(--domio-green); color: #fff; border: none; border-radius: 6px; cursor: pointer; white-space: nowrap; flex-shrink: 0; }
+
+.domio-footer-block { text-align: center; padding: 32px 20px 24px; border-top: 1px solid var(--domio-border); margin-top: 40px; }
+.domio-footer-block .f-logo { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 800; color: var(--domio-green); margin-bottom: 8px; letter-spacing: -1px; }
+.domio-footer-block p { font-size: 13px; color: var(--domio-muted); line-height: 1.6; margin: 0 0 6px; }
+.domio-footer-block .f-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-top: 10px; }
+.domio-footer-block a { font-size: 13px; color: var(--domio-muted); text-decoration: none; }
+.domio-footer-block a:hover { color: var(--domio-green); }
+
+@media (min-width: 600px) { .domio-calc-list { grid-template-columns: 1fr 1fr; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes spin { to { transform: rotate(360deg); } }
