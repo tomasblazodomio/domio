@@ -50,7 +50,7 @@
     var tabs = document.createElement('div');
     tabs.id = 'domio-mode-tabs';
     tabs.className = 'domio-mode-tabs';
-    tabs.innerHTML = '<button id="tab-floor" class="domio-mode-tab active" onclick="domioSetMode(\'floor\')">🪵 Podlahy</button><button id="tab-painting" class="domio-mode-tab" onclick="domioSetMode(\'painting\')">🖌️ Malování & Obklady</button>';
+    tabs.innerHTML = '<button id="tab-floor" class="domio-mode-tab active" onclick="domioSetMode(\'floor\')">🪵 Podlahy</button><button id="tab-painting" class="domio-mode-tab" onclick="domioSetMode(\'painting\')">🖌️ Malování a Obklady</button>';
     var firstChild = card.firstChild;
     card.insertBefore(tabs, firstChild);
   }
@@ -475,8 +475,8 @@
     btn.addEventListener('click', async function() {
       var phone = (document.getElementById('input-craftsman-phone') || {}).value || '';
       var psz   = (document.getElementById('input-craftsman-psz')   || {}).value || '';
-      if (!phone.trim()) { alert('Zadejte prosím telefon.'); return; }
-if (!psz.trim()) { alert('Zadejte prosím PSČ.'); return; }
+      if (!phone.trim() || !/^[0-9\s\+\-]{9,15}$/.test(phone.trim())) { alert('Zadejte platné telefonní číslo (pouze číslice, min. 9 znaků).'); return; }
+if (!psz.trim() || !/^[0-9]{3}\s?[0-9]{2}$/.test(psz.trim())) { alert('Zadejte platné PSČ (např. 140 00).'); return; }
       btn.disabled = true;
       btn.textContent = '⏳ Odesílám...';
       var area  = calcData ? (calcData._mode === 'painting' ? calcData.net_area  : calcData.area_m2)    : 0;
