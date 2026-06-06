@@ -549,6 +549,7 @@ if (!psz.trim() || !/^[0-9]{3}\s?[0-9]{2}$/.test(psz.trim())) { alert('Zadejte p
     injectDropdown();
     injectPaintingInputs();
     wrapInputRow();
+    showFloorInputs();
     injectSpinners();
     moveFormElements();
     bindCalculate();
