@@ -1,4 +1,4 @@
- (function() {
+(function() {
   const API = 'https://x8ki-letl-twmt.n7.xano.io/api:PaI_PX__';
   let calcData = null;
   let calcMode = 'floor';
