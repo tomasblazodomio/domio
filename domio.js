@@ -475,7 +475,8 @@
     btn.addEventListener('click', async function() {
       var phone = (document.getElementById('input-craftsman-phone') || {}).value || '';
       var psz   = (document.getElementById('input-craftsman-psz')   || {}).value || '';
-      if (!phone.trim() && !psz.trim()) { alert('Zadejte prosím telefon nebo PSČ.'); return; }
+      if (!phone.trim()) { alert('Zadejte prosím telefon.'); return; }
+if (!psz.trim()) { alert('Zadejte prosím PSČ.'); return; }
       btn.disabled = true;
       btn.textContent = '⏳ Odesílám...';
       var area  = calcData ? (calcData._mode === 'painting' ? calcData.net_area  : calcData.area_m2)    : 0;
