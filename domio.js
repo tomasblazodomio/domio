@@ -443,14 +443,16 @@
       var body;
       if (calcData._mode === 'painting') {
         body = { name: submittedName, email: submittedEmail, calc_type: 'painting',
-          sub_type: calcData.display_name, area_m2: calcData.net_area,
-          material_price: calcData.material_price, work_price: calcData.labor_price,
-          unit_material_price: 0, unit_labor_price: 0 };
+  sub_type: calcData.display_name, area_m2: calcData.net_area,
+  material_price: calcData.material_price, work_price: calcData.labor_price,
+  unit_material_price: 0, unit_labor_price: 0,
+  affiliate_link: calcData.affiliate_link || '' };
       } else {
         body = { name: submittedName, email: submittedEmail, calc_type: 'floor',
           sub_type: calcData.display_name || calcData.sub_type, area_m2: calcData.area_m2,
           material_price: calcData.material_price, work_price: calcData.work_price,
-          unit_material_price: calcData.unit_material_price, unit_labor_price: calcData.unit_labor_price };
+          unit_material_price: calcData.unit_material_price, unit_labor_price: calcData.unit_labor_price,
+  affiliate_link: calcData.affiliate_link || '' };
       }
       try {
         var res = await fetch(API + '/submit-lead', {
