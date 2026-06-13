@@ -435,7 +435,7 @@
     btn.addEventListener('click', async function() {
       var name  = (document.getElementById('input-name')  || {}).value || '';
       var email = (document.getElementById('input-email') || {}).value || '';
-      var partnerConsentElement = document.getElementById('partner-consent');
+      var partnerConsentElement = document.getElementById('input-partner-consent');
       var partnerConsent = partnerConsentElement ? partnerConsentElement.checked : false;
       var valid = true;
 
