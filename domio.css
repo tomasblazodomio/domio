@@ -302,3 +302,10 @@ body { font-family: 'DM Sans', sans-serif; -webkit-text-size-adjust: 100%; }
 @media (min-width: 600px) { .domio-calc-list { grid-template-columns: 1fr 1fr; } }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes spin { to { transform: rotate(360deg); } }
+.domio-hero-section {
+  position: relative;
+  background-image: linear-gradient(135deg, rgba(27,67,50,0.92), rgba(27,67,50,0.85)), url('https://cdn.prod.website-files.com/6a1a9c2c9b7db52174bdd4ed/6a2d7cb9d79d95a10f975a72_Copilot_20260613_174641.png');
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: multiply;
+}
