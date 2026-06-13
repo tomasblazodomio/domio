@@ -315,6 +315,7 @@
     if (nameEl   && document.getElementById('domio-name-slot'))   document.getElementById('domio-name-slot').appendChild(nameEl);
     if (emailEl  && document.getElementById('domio-email-slot'))  document.getElementById('domio-email-slot').appendChild(emailEl);
     if (submitEl && document.getElementById('domio-submit-slot')) document.getElementById('domio-submit-slot').appendChild(submitEl);
+    if (document.getElementById('domio-consent-text') && document.getElementById('domio-submit-slot')) document.getElementById('domio-submit-slot').appendChild(document.getElementById('domio-consent-text'));
   }
 
   function showResults() {
