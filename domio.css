@@ -311,34 +311,3 @@ body { font-family: 'DM Sans', sans-serif; -webkit-text-size-adjust: 100%; }
   background-position: center !important;
   background-blend-mode: multiply !important;
 }
-.domio-benefits-strip {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 32px;
-  padding: 24px 16px;
-  background-color: #ffffff;
-}
-
-.domio-benefit-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  color: #1a3c2a;
-}
-
-.domio-benefit-icon {
-  color: #2f9e44;
-  font-size: 18px;
-  font-weight: 700;
-}
-
-@media (max-width: 767px) {
-  .domio-benefits-strip {
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-  }
-}
