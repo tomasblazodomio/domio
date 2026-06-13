@@ -431,35 +431,58 @@
   function bindSubmit() {
     var btn = document.getElementById('btn-submit');
     if (!btn) return;
+    
     btn.addEventListener('click', async function() {
       var name  = (document.getElementById('input-name')  || {}).value || '';
       var email = (document.getElementById('input-email') || {}).value || '';
+      var partnerConsentElement = document.getElementById('partner-consent');
+      var partnerConsent = partnerConsentElement ? partnerConsentElement.checked : false;
       var valid = true;
+
       if (!name.trim())  { showError('input-name',  'Zadejte své jméno'); valid = false; }
       if (!email.trim()) { showError('input-email', 'Zadejte platný e-mail'); valid = false; }
       if (!calcData) { alert('Nejprve vypočítejte cenu.'); return; }
       if (!valid) return;
+
       setLoading(btn, true);
       submittedName = name.trim();
       submittedEmail = email.trim();
+      
       var body;
       if (calcData._mode === 'painting') {
-        body = { name: submittedName, email: submittedEmail, calc_type: 'painting',
-  sub_type: calcData.display_name, area_m2: calcData.net_area,
-  material_price: calcData.material_price, work_price: calcData.labor_price,
-  unit_material_price: 0, unit_labor_price: 0,
-  link_material: calcData.link_material || '',
-link_accessories: calcData.link_accessories || '',
-link_tools: calcData.link_tools || '' };
+        body = { 
+          name: submittedName, 
+          email: submittedEmail, 
+          calc_type: 'painting',
+          sub_type: calcData.display_name, 
+          area_m2: calcData.net_area,
+          material_price: calcData.material_price, 
+          work_price: calcData.labor_price,
+          unit_material_price: 0, 
+          unit_labor_price: 0,
+          link_material: calcData.link_material || '',
+          link_accessories: calcData.link_accessories || '',
+          link_tools: calcData.link_tools || '',
+          partner_consent: partnerConsent
+        };
       } else {
-        body = { name: submittedName, email: submittedEmail, calc_type: 'floor',
-          sub_type: calcData.display_name || calcData.sub_type, area_m2: calcData.area_m2,
-          material_price: calcData.material_price, work_price: calcData.work_price,
-          unit_material_price: calcData.unit_material_price, unit_labor_price: calcData.unit_labor_price,
-  link_material: calcData.link_material || '',
-link_accessories: calcData.link_accessories || '',
-link_tools: calcData.link_tools || '' };
+        body = { 
+          name: submittedName, 
+          email: submittedEmail, 
+          calc_type: 'floor',
+          sub_type: calcData.display_name, 
+          area_m2: calcData.area_m2,
+          material_price: calcData.material_price, 
+          work_price: calcData.work_price,
+          unit_material_price: calcData.unit_material_price, 
+          unit_labor_price: calcData.unit_labor_price,
+          link_material: calcData.link_material || '',
+          link_accessories: calcData.link_accessories || '',
+          link_tools: calcData.link_tools || '',
+          partner_consent: partnerConsent
+        };
       }
+
       try {
         var res = await fetch(API + '/submit-lead', {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
