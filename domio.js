@@ -316,6 +316,7 @@
     if (emailEl  && document.getElementById('domio-email-slot'))  document.getElementById('domio-email-slot').appendChild(emailEl);
     if (submitEl && document.getElementById('domio-submit-slot')) document.getElementById('domio-submit-slot').appendChild(submitEl);
     if (document.getElementById('domio-consent-text') && document.getElementById('domio-submit-slot')) document.getElementById('domio-submit-slot').appendChild(document.getElementById('domio-consent-text'));
+    if (document.getElementById('domio-partner-consent-wrap') && document.getElementById('domio-submit-slot')) document.getElementById('domio-submit-slot').parentNode.insertBefore(document.getElementById('domio-partner-consent-wrap'), document.getElementById('domio-submit-slot'));
   }
 
   function showResults() {
