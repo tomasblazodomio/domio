@@ -67,7 +67,6 @@
       if (cardFloor) cardFloor.className = 'domio-calc-item is-active';
       if (cardPainting) cardPainting.className = 'domio-calc-item';
       showFloorInputs();
-      updateBlurLabels('floor');
       updateTeaserContent('floor');
     } else {
       if (tabPainting) tabPainting.className = 'domio-mode-tab active';
@@ -75,7 +74,6 @@
       if (cardPainting) cardPainting.className = 'domio-calc-item is-active';
       if (cardFloor) cardFloor.className = 'domio-calc-item';
       showPaintingInputs();
-      updateBlurLabels('painting');
       updateTeaserContent('painting');
     }
     resetResults();
@@ -110,41 +108,30 @@
     resetResults();
   };
 
-  function updateBlurLabels(mode) {
-    var lblMaterial = document.getElementById('blur-label-material');
-    var lblExtra = document.getElementById('blur-label-extra');
-    var areaLabel = document.getElementById('area-label-text');
-    if (mode === 'floor') {
-      if (lblMaterial) lblMaterial.innerHTML = '📦 Materiál';
-      if (lblExtra) lblExtra.innerHTML = '📐 S odpadem';
-      if (areaLabel) areaLabel.textContent = 'Vaše místnost';
-    } else {
-      if (lblMaterial) lblMaterial.innerHTML = '🖌️ Barva a materiál';
-      if (lblExtra) lblExtra.innerHTML = '📐 Plocha stropu';
-      if (areaLabel) areaLabel.textContent = 'Plocha k malování';
-    }
-  }
-
   function updateTeaserContent(mode) {
     var headline = document.getElementById('teaser-headline');
     var body = document.getElementById('teaser-body');
     var badge = document.getElementById('teaser-badge');
+    var formTitle = document.querySelector('.teaser-form-title');
     if (mode === 'painting') {
       if (headline) headline.innerHTML = 'Kolik přesně zaplatíte za<br><span>malování místnosti?</span>';
-      if (body) body.innerHTML = 'Vypočítali jsme vám <strong style="color:#fff">cenu barvy, materiálu a práce</strong> — s ohledem na <strong style="color:#fff">aktuální ceny</strong> z tohoto týdne.';
+      if (body) body.innerHTML = 'Vypočítali jsme <strong style="color:#fff">plochu vašich stěn</strong> — kompletní rozpočet (barva, materiál, práce + kde nakoupit) vám zašleme <strong style="color:#fff">zdarma na e-mail</strong>.';
       if (badge) badge.textContent = '🖌️ Malování';
     } else {
       if (headline) headline.innerHTML = 'Kolik přesně zaplatíte za<br><span>rekonstrukci podlahy?</span>';
-      if (body) body.innerHTML = 'Vypočítali jsme vám <strong style="color:#fff">cenu materiálu, cenu práce</strong> a celkovou sumu — s ohledem na <strong style="color:#fff">aktuální ceny</strong> z tohoto týdne.';
-      if (badge) badge.textContent = '🔍 Víme vše!';
+      if (body) body.innerHTML = 'Vypočítali jsme <strong style="color:#fff">plochu vaší místnosti</strong> — kompletní rozpočet (materiál, práce, odpad + kde nakoupit) vám zašleme <strong style="color:#fff">zdarma na e-mail</strong>.';
+      if (badge) badge.textContent = '🪵 Podlahy';
     }
+    if (formTitle) formTitle.innerHTML = '📩 Zadejte e-mail a dostanete:<br><span style="font-size:13px;font-weight:400;opacity:0.9;display:block;margin-top:6px;line-height:1.6;">✅ Cenu materiálu i práce<br>✅ Kde nejlépe nakoupit (s odkazy)<br>✅ PDF rozpočet do 2 minut</span>';
   }
 
   function resetResults() {
-    document.getElementById('domio-area-box').classList.remove('visible');
-    document.getElementById('domio-blur-box').classList.remove('visible');
-    document.getElementById('domio-teaser-box').classList.remove('visible');
-    document.getElementById('domio-craftsman-box').classList.remove('visible');
+    var areaBox = document.getElementById('domio-area-box');
+    var teaserBox = document.getElementById('domio-teaser-box');
+    var craftsmanBox = document.getElementById('domio-craftsman-box');
+    if (areaBox) areaBox.classList.remove('visible');
+    if (teaserBox) teaserBox.classList.remove('visible');
+    if (craftsmanBox) craftsmanBox.classList.remove('visible');
     calcData = null;
   }
 
@@ -225,7 +212,7 @@
       var heightLabel = document.createElement('label');
       heightLabel.id = 'height-label';
       heightLabel.textContent = 'Výška místnosti (m) — standardně 2,5 m';
-      heightLabel.style.cssText = 'display:block;font-size:13px;font-weight:600;color:#6B7280;margin-bottom:4px;';
+      heightLabel.style.cssText = 'display:none;font-size:13px;font-weight:600;color:#6B7280;margin-bottom:4px;';
       inputLength.parentNode.insertBefore(heightLabel, inputLength);
       var heightInput = document.createElement('input');
       heightInput.type = 'number';
@@ -320,13 +307,13 @@
   }
 
   function showResults() {
-    document.getElementById('domio-area-box').classList.add('visible');
-    document.getElementById('domio-blur-box').classList.add('visible');
-    document.getElementById('domio-teaser-box').classList.add('visible');
-    document.getElementById('domio-success-msg').classList.remove('visible');
-    document.getElementById('domio-craftsman-box').classList.remove('visible');
+    var areaBox = document.getElementById('domio-area-box');
+    var teaserBox = document.getElementById('domio-teaser-box');
+    if (areaBox) areaBox.classList.add('visible');
+    if (teaserBox) teaserBox.classList.add('visible');
+    // domio-blur-box sa NEZOBRAZUJE — ceny sú skryté, user ich dostane na email
     setTimeout(function() {
-      document.getElementById('domio-area-box').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      if (areaBox) areaBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }, 150);
   }
 
@@ -373,10 +360,6 @@
       var d = await res.json();
       calcData = d; calcData._mode = 'floor';
       document.getElementById('domio-area-number').innerHTML = d.area_m2 + '<span class="area-unit"> m²</span>';
-      document.getElementById('blur-total').textContent    = fmt(d.total_price);
-      document.getElementById('blur-material').textContent = fmt(d.material_price);
-      document.getElementById('blur-work').textContent     = fmt(d.work_price);
-      document.getElementById('blur-waste').textContent    = parseFloat(d.area_with_waste).toFixed(2) + ' m²';
       showResults();
       if (typeof gtag !== 'undefined') gtag('event', 'calculator_calculated', { floor_type: subtype, area_m2: d.area_m2 });
     } catch(e) { alert('Chyba při výpočtu. Zkuste to prosím znovu.'); }
@@ -418,10 +401,6 @@
       var d = await res.json();
       calcData = d; calcData._mode = 'painting';
       document.getElementById('domio-area-number').innerHTML = parseFloat(d.net_area).toFixed(1) + '<span class="area-unit"> m²</span>';
-      document.getElementById('blur-total').textContent    = fmt(d.total_price);
-      document.getElementById('blur-material').textContent = fmt(d.material_price);
-      document.getElementById('blur-work').textContent     = fmt(d.labor_price);
-      document.getElementById('blur-waste').textContent    = paintingAreaMode === 'custom' ? '—' : parseFloat(d.ceiling_area).toFixed(2) + ' m²';
       showResults();
       if (typeof gtag !== 'undefined') gtag('event', 'calculator_calculated', { painting_type: paintingType, net_area: d.net_area });
     } catch(e) { alert('Chyba při výpočtu. Zkuste to prosím znovu.'); }
@@ -507,7 +486,7 @@
       var phone = (document.getElementById('input-craftsman-phone') || {}).value || '';
       var psz   = (document.getElementById('input-craftsman-psz')   || {}).value || '';
       if (!phone.trim() || !/^[0-9\s\+\-]{9,15}$/.test(phone.trim())) { alert('Zadejte platné telefonní číslo (pouze číslice, min. 9 znaků).'); return; }
-if (!psz.trim() || !/^[0-9]{3}\s?[0-9]{2}$/.test(psz.trim())) { alert('Zadejte platné PSČ (např. 140 00).'); return; }
+      if (!psz.trim() || !/^[0-9]{3}\s?[0-9]{2}$/.test(psz.trim())) { alert('Zadejte platné PSČ (např. 140 00).'); return; }
       btn.disabled = true;
       btn.textContent = '⏳ Odesílám...';
       var area  = calcData ? (calcData._mode === 'painting' ? calcData.net_area  : calcData.area_m2)    : 0;
@@ -581,6 +560,7 @@ if (!psz.trim() || !/^[0-9]{3}\s?[0-9]{2}$/.test(psz.trim())) { alert('Zadejte p
     injectPaintingInputs();
     wrapInputRow();
     showFloorInputs();
+    updateTeaserContent('floor');
     injectSpinners();
     moveFormElements();
     bindCalculate();
