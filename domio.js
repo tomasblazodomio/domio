@@ -115,11 +115,11 @@
     var formTitle = document.querySelector('.teaser-form-title');
     if (mode === 'painting') {
       if (headline) headline.innerHTML = 'Kolik přesně zaplatíte za<br><span>malování místnosti?</span>';
-      if (body) body.innerHTML = 'Vypočítali jsme <strong style="color:#fff">plochu vašich stěn</strong> — kompletní rozpočet (barva, materiál, práce + kde nakoupit) vám zašleme <strong style="color:#fff">zdarma na e-mail</strong>.';
+      if (body) body.innerHTML = 'Kompletní rozpočet <strong style="color:#fff">barvy, materiálu i práce</strong> — do 2 minut ve vaší e-mailové schránce.';
       if (badge) badge.textContent = '🖌️ Malování';
     } else {
       if (headline) headline.innerHTML = 'Kolik přesně zaplatíte za<br><span>rekonstrukci podlahy?</span>';
-      if (body) body.innerHTML = 'Vypočítali jsme <strong style="color:#fff">plochu vaší místnosti</strong> — kompletní rozpočet (materiál, práce, odpad + kde nakoupit) vám zašleme <strong style="color:#fff">zdarma na e-mail</strong>.';
+      if (body) body.innerHTML = 'Kompletní rozpočet <strong style="color:#fff">materiálu, práce i odpadu</strong> — do 2 minut ve vaší e-mailové schránce.';
       if (badge) badge.textContent = '🪵 Podlahy';
     }
     if (formTitle) formTitle.innerHTML = '📩 Zadejte e-mail a dostanete:<br><span style="font-size:13px;font-weight:400;opacity:0.9;display:block;margin-top:6px;line-height:1.6;">✅ Cenu materiálu i práce<br>✅ Kde nejlépe nakoupit (s odkazy)<br>✅ PDF rozpočet do 2 minut</span>';
