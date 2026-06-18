@@ -114,11 +114,11 @@
     var badge = document.getElementById('teaser-badge');
     var formTitle = document.querySelector('.teaser-form-title');
     if (mode === 'painting') {
-      if (headline) headline.innerHTML = 'Kolik přesně zaplatíte za<br><span>malování místnosti?</span>';
+      if (headline) headline.innerHTML = 'Váš rozpočet je připraven —<br><span>kam ho máme poslat?</span>';
       if (body) body.innerHTML = 'Kompletní rozpočet <strong style="color:#fff">barvy, materiálu i práce</strong> — do 2 minut ve vaší e-mailové schránce.';
       if (badge) badge.textContent = '🖌️ Malování';
     } else {
-      if (headline) headline.innerHTML = 'Kolik přesně zaplatíte za<br><span>rekonstrukci podlahy?</span>';
+      if (headline) headline.innerHTML = 'Váš rozpočet je připraven —<br><span>kam ho máme poslat?</span>';
       if (body) body.innerHTML = 'Kompletní rozpočet <strong style="color:#fff">materiálu, práce i odpadu</strong> — do 2 minut ve vaší e-mailové schránce.';
       if (badge) badge.textContent = '🪵 Podlahy';
     }
@@ -296,10 +296,8 @@
   }
 
   function moveFormElements() {
-    var nameEl   = document.getElementById('input-name');
     var emailEl  = document.getElementById('input-email');
     var submitEl = document.getElementById('btn-submit');
-    if (nameEl   && document.getElementById('domio-name-slot'))   document.getElementById('domio-name-slot').appendChild(nameEl);
     if (emailEl  && document.getElementById('domio-email-slot'))  document.getElementById('domio-email-slot').appendChild(emailEl);
     if (submitEl && document.getElementById('domio-submit-slot')) document.getElementById('domio-submit-slot').appendChild(submitEl);
     if (document.getElementById('domio-consent-text') && document.getElementById('domio-submit-slot')) document.getElementById('domio-submit-slot').appendChild(document.getElementById('domio-consent-text'));
@@ -412,25 +410,21 @@
     if (!btn) return;
     
     btn.addEventListener('click', async function() {
-      var name  = (document.getElementById('input-name')  || {}).value || '';
       var email = (document.getElementById('input-email') || {}).value || '';
       var partnerConsentElement = document.getElementById('input-partner-consent');
       var partnerConsent = partnerConsentElement ? partnerConsentElement.checked : false;
       var valid = true;
 
-      if (!name.trim())  { showError('input-name',  'Zadejte své jméno'); valid = false; }
       if (!email.trim()) { showError('input-email', 'Zadejte platný e-mail'); valid = false; }
       if (!calcData) { alert('Nejprve vypočítejte cenu.'); return; }
       if (!valid) return;
 
       setLoading(btn, true);
-      submittedName = name.trim();
       submittedEmail = email.trim();
       
       var body;
       if (calcData._mode === 'painting') {
         body = { 
-          name: submittedName, 
           email: submittedEmail, 
           calc_type: 'painting',
           sub_type: calcData.display_name, 
@@ -446,7 +440,6 @@
         };
       } else {
         body = { 
-          name: submittedName, 
           email: submittedEmail, 
           calc_type: 'floor',
           sub_type: calcData.display_name, 
@@ -513,7 +506,7 @@
   }
 
   function bindClearErrors() {
-    ['input-subtype','input-painting-type','input-length','input-width','input-height','input-name','input-email','input-custom-area'].forEach(function(id) {
+    ['input-subtype','input-painting-type','input-length','input-width','input-height','input-email','input-custom-area'].forEach(function(id) {
       var el = document.getElementById(id);
       if (el) el.addEventListener('input', function() { clearError(id); });
     });
