@@ -563,8 +563,8 @@
   });
 })();
 function injectAffiliateStrip() {
-  var target = document.querySelector('.domio-trust-badges');
-  if (!target) return;
+  var hero = document.querySelector('.domio-hero-section');
+  if (!hero) return;
   var strip = document.createElement('div');
   strip.className = 'domio-affiliate-strip';
   strip.innerHTML = `
@@ -587,7 +587,7 @@ function injectAffiliateStrip() {
         <img src="https://cdn.prod.website-files.com/6a1a9c2c9b7db52174bdd4ed/6a3abddbc80c7a13eb9aa091_021e6e5560e89d8916bbe7325bde0e948c4a44db.webp" alt="Deokork">
       </div>
     </div>`;
-  target.parentNode.insertBefore(strip, target);
+  hero.parentNode.insertBefore(strip, hero.nextSibling);
 }
 
 window.addEventListener('load', function() {
