@@ -562,3 +562,34 @@
     bindClearErrors();
   });
 })();
+function injectAffiliateStrip() {
+  var target = document.querySelector('.domio-trust-badges');
+  if (!target) return;
+  var strip = document.createElement('div');
+  strip.className = 'domio-affiliate-strip';
+  strip.innerHTML = `
+    <p class="domio-affiliate-label">affiliate partneri:</p>
+    <div class="domio-marquee-wrapper">
+      <div class="domio-marquee-track">
+        <img src="https://cdn.prod.website-files.com/6a1a9c2c9b7db52174bdd4ed/6a3abddbbf948e6cf439793f_802d37af89fe8f9a92e026eb205acf7026575939.png" alt="i-PODLAHY">
+        <img src="https://cdn.prod.website-files.com/6a1a9c2c9b7db52174bdd4ed/6a3abddb56fc915f8ef4a382_f18e6e1623e00b9db7be077663a04cc8b6ee6e00.png" alt="bauMax">
+        <img src="https://cdn.prod.website-files.com/6a1a9c2c9b7db52174bdd4ed/6a3abddb127d02278eee54a2_23d52d6a2a320fefe18ae6a2b555f4927c5b9be6.png" alt="Svět koupelny">
+        <img src="https://cdn.prod.website-files.com/6a1a9c2c9b7db52174bdd4ed/6a3abddbc40b5f14b9cabe10_cae32418a0c1fad741e9641a4fd84dfa1b07bc6c.png" alt="Tmnábytek.cz">
+        <img src="https://cdn.prod.website-files.com/6a1a9c2c9b7db52174bdd4ed/6a3abddbff2f567f504d240f_b4734958729aa8240749697eca3d4a45492dc766.png" alt="Skladová okna">
+        <img src="https://cdn.prod.website-files.com/6a1a9c2c9b7db52174bdd4ed/6a3abddb33d0575512444a13_2f856a4dd1a245ade6dc9efea5bb01cd5905680f.png" alt="Můj koberec">
+        <img src="https://cdn.prod.website-files.com/6a1a9c2c9b7db52174bdd4ed/6a3abddbc80c7a13eb9aa091_021e6e5560e89d8916bbe7325bde0e948c4a44db.webp" alt="Deokork">
+        <img src="https://cdn.prod.website-files.com/6a1a9c2c9b7db52174bdd4ed/6a3abddbbf948e6cf439793f_802d37af89fe8f9a92e026eb205acf7026575939.png" alt="i-PODLAHY">
+        <img src="https://cdn.prod.website-files.com/6a1a9c2c9b7db52174bdd4ed/6a3abddb56fc915f8ef4a382_f18e6e1623e00b9db7be077663a04cc8b6ee6e00.png" alt="bauMax">
+        <img src="https://cdn.prod.website-files.com/6a1a9c2c9b7db52174bdd4ed/6a3abddb127d02278eee54a2_23d52d6a2a320fefe18ae6a2b555f4927c5b9be6.png" alt="Svět koupelny">
+        <img src="https://cdn.prod.website-files.com/6a1a9c2c9b7db52174bdd4ed/6a3abddbc40b5f14b9cabe10_cae32418a0c1fad741e9641a4fd84dfa1b07bc6c.png" alt="Tmnábytek.cz">
+        <img src="https://cdn.prod.website-files.com/6a1a9c2c9b7db52174bdd4ed/6a3abddbff2f567f504d240f_b4734958729aa8240749697eca3d4a45492dc766.png" alt="Skladová okna">
+        <img src="https://cdn.prod.website-files.com/6a1a9c2c9b7db52174bdd4ed/6a3abddb33d0575512444a13_2f856a4dd1a245ade6dc9efea5bb01cd5905680f.png" alt="Můj koberec">
+        <img src="https://cdn.prod.website-files.com/6a1a9c2c9b7db52174bdd4ed/6a3abddbc80c7a13eb9aa091_021e6e5560e89d8916bbe7325bde0e948c4a44db.webp" alt="Deokork">
+      </div>
+    </div>`;
+  target.parentNode.insertBefore(strip, target);
+}
+
+window.addEventListener('load', function() {
+  setTimeout(injectAffiliateStrip, 300);
+});
