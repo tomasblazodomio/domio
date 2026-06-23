@@ -322,6 +322,10 @@ body { font-family: 'DM Sans', sans-serif; -webkit-text-size-adjust: 100%; }
   background: #fff;
   text-align: center;
   overflow: hidden;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
 }
 .domio-affiliate-label {
   font-size: 10px;
