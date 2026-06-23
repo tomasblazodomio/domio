@@ -342,9 +342,9 @@ body { font-family: 'DM Sans', sans-serif; -webkit-text-size-adjust: 100%; }
   animation: domio-marquee 18s linear infinite;
 }
 .domio-marquee-track img {
-  height: 32px;
+  height: 44px;
   width: auto;
-  opacity: 0.65;
+  opacity: 0.75;
   flex-shrink: 0;
 }
 @keyframes domio-marquee {
