@@ -355,3 +355,199 @@ body { font-family: 'DM Sans', sans-serif; -webkit-text-size-adjust: 100%; }
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+/* =============================================
+   DOMIO — Recenzie "Napsali jste nám"
+   ============================================= */
+.domio-rv-section {
+  padding: 48px 20px 40px;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.domio-rv-eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #1A7A3C;
+  text-align: center;
+  margin: 0 0 16px;
+}
+
+.domio-rv-carousel {
+  position: relative;
+  padding: 0 44px;
+}
+
+.domio-rv-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #e0e0e0;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #444;
+  padding: 0;
+  transition: border-color 0.2s, background 0.2s;
+  z-index: 2;
+}
+
+.domio-rv-arrow:hover {
+  background: #f5f5f5;
+  border-color: #bbb;
+}
+
+.domio-rv-prev { left: 0; }
+.domio-rv-next { right: 0; }
+
+.domio-rv-card {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  overflow: hidden;
+  animation: domio-rv-in 0.25s ease;
+}
+
+@keyframes domio-rv-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.domio-rv-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: #f7f7f7;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.domio-rv-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #e4f3ea;
+  color: #1A7A3C;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.domio-rv-meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.domio-rv-nameline {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.domio-rv-name {
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.domio-rv-city {
+  color: #999;
+  font-weight: 400;
+}
+
+.domio-rv-subject {
+  font-size: 12px;
+  color: #999;
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.domio-rv-date {
+  font-size: 11px;
+  color: #bbb;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.domio-rv-body {
+  padding: 14px 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #444;
+}
+
+.domio-rv-stars {
+  padding: 0 16px 14px;
+  color: #f4b942;
+  font-size: 16px;
+  letter-spacing: 3px;
+}
+
+.domio-rv-dots {
+  display: flex;
+  gap: 7px;
+  justify-content: center;
+  margin-top: 14px;
+}
+
+.domio-rv-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+  background: #d5d5d5;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: width 0.2s ease, background 0.2s ease;
+}
+
+.domio-rv-dot.active {
+  width: 22px;
+  background: #1A7A3C;
+}
+
+/* Mobil */
+@media (max-width: 600px) {
+  .domio-rv-carousel {
+    padding: 0 36px;
+  }
+  .domio-rv-arrow {
+    width: 30px;
+    height: 30px;
+  }
+  .domio-rv-date {
+    display: none;
+  }
+  .domio-rv-body {
+    font-size: 13px;
+    padding: 12px 14px;
+  }
+  .domio-rv-header {
+    padding: 10px 14px;
+  }
+  .domio-rv-stars {
+    padding: 0 14px 12px;
+  }
+}
+
+@media (max-width: 380px) {
+  .domio-rv-carousel {
+    padding: 0 30px;
+  }
+  .domio-rv-arrow {
+    width: 26px;
+    height: 26px;
+  }
+}
