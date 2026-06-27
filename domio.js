@@ -737,7 +737,7 @@ function injectReviewsSection() {
 
   function resetTimer() {
     clearInterval(timer);
-    timer = setInterval(() => move(1), 5000);
+    timer = setInterval(() => move(1), 10000);
   }
 
   function switchCat(newCat) {
