@@ -593,3 +593,185 @@ function injectAffiliateStrip() {
 window.addEventListener('load', function() {
   setTimeout(injectAffiliateStrip, 300);
 });
+/* =============================================
+   DOMIO — Recenzie "Napsali jste nám"
+   ============================================= */
+const DOMIO_REVIEWS = {
+  podlahy: [
+    {
+      initials: 'TR', name: 'Tomáš R.', city: 'Praha',
+      subject: 'Re: kalkulace podlahy',
+      date: 'Po 14. 4. 2025 · 11:32',
+      text: 'Dobrý den, chtěl jsem jen dát vědět — zadal jsem 28 metrů, vinylová podlaha, a výsledek se shodoval s nabídkou od řemeslníka skoro na korunu. Nevím jak to děláte, ale funguje to. Díky.'
+    },
+    {
+      initials: 'KN', name: 'Klára N.', city: 'Brno',
+      subject: 'Dotaz — podlaha v novém bytě',
+      date: 'St 23. 4. 2025 · 16:05',
+      text: 'Ahoj, kupujeme s přítelkyní první byt a fakt jsme nevěděly, co dát stranou na podlahy. Tohle nám pomohlo — aspoň jsme věděly, jestli to finančně dává smysl, ještě než jsme cokoliv podepisovaly.'
+    },
+    {
+      initials: 'PH', name: 'Pavel H.', city: 'Zlín',
+      subject: 'Kalkulace vs. nabídka od firmy',
+      date: 'Čt 8. 5. 2025 · 9:47',
+      text: 'Zdravím, píšu jen proto, že mi řemeslník dal nabídku a přišla mi vysoká. Zkusil jsem vaši kalkulačku a vyšlo mi o 4 000 míň. Nakonec jsem s tím číslem šel zpátky a firma slevu dala. Takže díky :)'
+    },
+    {
+      initials: 'JK', name: 'Jiří K.', city: 'Olomouc',
+      subject: 'Ušetřil jsem spoustu telefonátů',
+      date: 'Pá 23. 5. 2025 · 14:22',
+      text: 'Dobrý den, chtěl jsem poděkovat — ušetřil jsem kvůli vám spoustu telefonátů. Místo abych čekal na nabídky od pěti firem, spočítal jsem si to sám a šel rovnou jednat.'
+    },
+    {
+      initials: 'MV', name: 'Michaela V.', city: 'České Budějovice',
+      subject: 'Podlaha svépomocí — díky!',
+      date: 'Út 10. 6. 2025 · 20:14',
+      text: 'Děláme si podlahu sami s přítelem a tohle byl náš první krok. Věděli jsme, kolik materiálu koupit a kolik peněz si dát stranou. Bez toho bychom jen hádali. Super věc.'
+    }
+  ],
+  'malovani-obklady': [
+    {
+      initials: 'RM', name: 'Radek M.', city: 'Praha',
+      subject: 'Rekonstrukce koupelny — obklady i malování',
+      date: 'St 2. 4. 2025 · 13:19',
+      text: 'Dobrý den, rekonstruujeme koupelnu — obklady i malování najednou. Ocenil jsem, že si to spočítám celé na jednom místě. Číslo sedělo, žádné překvapení od řemeslníka.'
+    },
+    {
+      initials: 'VS', name: 'Veronika S.', city: 'Pardubice',
+      subject: 'Malování dětského pokoje',
+      date: 'Pá 18. 4. 2025 · 8:55',
+      text: 'Ahoj, malovaly jsme s dcerou dětský pokoj a potřebovaly jsme vědět, kolik barvy koupit. Kalkulačka to odhadla líp než prodavač v železářství — a ten tam byl 20 let :D Díky moc.'
+    },
+    {
+      initials: 'MH', name: 'Markéta a Petr H.', city: 'Plzeň',
+      subject: 'Obkládání WC poprvé',
+      date: 'Po 12. 5. 2025 · 19:33',
+      text: 'Dobrý den, obkládali jsme WC sami poprvé v životě a vůbec jsme nevěděli kolik materiálu koupit. Kalkulačka pomohla, nekoupili jsme zbytečně navíc. Dopadlo to dobře.'
+    },
+    {
+      initials: 'MC', name: 'Martin Č.', city: 'Hradec Králové',
+      subject: 'Nejlepší kalkulačka co jsem zkoušel',
+      date: 'Čt 29. 5. 2025 · 10:08',
+      text: 'Zdravím, zkoušel jsem víc kalkulaček online a tohle je jediný web, co mi dal konkrétní číslo bez toho, aby chtěl telefon předem. Docení se to až když to člověk zkusí jinde.'
+    },
+    {
+      initials: 'ZK', name: 'Zdeněk K.', city: 'Olomouc',
+      subject: 'Koupelna — obklady a pak malování',
+      date: 'Út 17. 6. 2025 · 15:41',
+      text: 'Dobrý den, dělám postupně celou koupelnu — nejdřív obklady, pak malování. Tohle spouštím jako první věc než cokoliv objednám. Jako orientace před nákupem výborný.'
+    }
+  ]
+};
+
+function injectReviewsSection() {
+  const target = document.getElementById('domio-reviews');
+  if (!target) return;
+
+  target.innerHTML = `
+    <section class="domio-rv-section">
+      <p class="domio-rv-eyebrow">Napsali jste nám</p>
+      <div class="domio-rv-carousel">
+        <button class="domio-rv-arrow domio-rv-prev" id="domio-rv-prev" aria-label="Předchozí zpráva">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <div id="domio-rv-track"></div>
+        <button class="domio-rv-arrow domio-rv-next" id="domio-rv-next" aria-label="Další zpráva">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+      <div class="domio-rv-dots" id="domio-rv-dots"></div>
+    </section>
+  `;
+
+  let cat = 'podlahy';
+  let idx = 0;
+  let timer = null;
+
+  function getReviews() {
+    return DOMIO_REVIEWS[cat] || DOMIO_REVIEWS.podlahy;
+  }
+
+  function render() {
+    const rv = getReviews();
+    const r = rv[idx];
+    const track = document.getElementById('domio-rv-track');
+    const dots  = document.getElementById('domio-rv-dots');
+    if (!track || !dots || !r) return;
+
+    track.innerHTML = `
+      <div class="domio-rv-card">
+        <div class="domio-rv-header">
+          <div class="domio-rv-avatar">${r.initials}</div>
+          <div class="domio-rv-meta">
+            <div class="domio-rv-nameline">
+              <span class="domio-rv-name">${r.name}</span>
+              <span class="domio-rv-city"> · ${r.city}</span>
+            </div>
+            <div class="domio-rv-subject">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+              ${r.subject}
+            </div>
+          </div>
+          <div class="domio-rv-date">${r.date}</div>
+        </div>
+        <div class="domio-rv-body">${r.text}</div>
+        <div class="domio-rv-stars">★★★★★</div>
+      </div>
+    `;
+
+    dots.innerHTML = rv.map((_, i) =>
+      `<button class="domio-rv-dot${i === idx ? ' active' : ''}" data-i="${i}" aria-label="Zpráva ${i + 1}"></button>`
+    ).join('');
+  }
+
+  function move(dir) {
+    const rv = getReviews();
+    idx = (idx + dir + rv.length) % rv.length;
+    render();
+    resetTimer();
+  }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => move(1), 5000);
+  }
+
+  function switchCat(newCat) {
+    if (newCat === cat) return;
+    cat = newCat;
+    idx = 0;
+    render();
+  }
+
+  document.getElementById('domio-rv-prev').addEventListener('click', () => move(-1));
+  document.getElementById('domio-rv-next').addEventListener('click', () => move(1));
+
+  document.getElementById('domio-rv-dots').addEventListener('click', (e) => {
+    const btn = e.target.closest('.domio-rv-dot');
+    if (!btn) return;
+    idx = parseInt(btn.dataset.i);
+    render();
+    resetTimer();
+  });
+
+  // Intersection Observer — sleduje ktorá kalkulačka je vo viewport
+  const calcs = document.querySelectorAll('[data-calculator]');
+  if (calcs.length) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) switchCat(e.target.dataset.calculator);
+      });
+    }, { threshold: 0.35 });
+    calcs.forEach(el => obs.observe(el));
+  }
+
+  render();
+  resetTimer();
+}
+
+// Spustenie
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', injectReviewsSection);
+} else {
+  injectReviewsSection();
+}
