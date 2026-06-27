@@ -57,6 +57,10 @@
 
   window.domioSetMode = function(mode) {
     calcMode = mode;
+     if (window.domioReviewsSwitch) {
+    window.domioReviewsSwitch(mode === 'floor' ? 'podlahy' : 'malovani-obklady');
+  }
+  var tabFloor = document.getElementById('tab-floor');
     var tabFloor = document.getElementById('tab-floor');
     var tabPainting = document.getElementById('tab-painting');
     var cardFloor = document.getElementById('calc-card-floor');
@@ -753,18 +757,9 @@ function injectReviewsSection() {
     render();
     resetTimer();
   });
-
-  // Intersection Observer — sleduje ktorá kalkulačka je vo viewport
-  const calcs = document.querySelectorAll('[data-calculator]');
-  if (calcs.length) {
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) switchCat(e.target.dataset.calculator);
-      });
-    }, { threshold: 0.35 });
-    calcs.forEach(el => obs.observe(el));
-  }
-
+  
+// Hook do domioSetMode
+window.domioReviewsSwitch = switchCat;
   render();
   resetTimer();
 }
