@@ -57,10 +57,9 @@
 
   window.domioSetMode = function(mode) {
     calcMode = mode;
-     if (window.domioReviewsSwitch) {
-    window.domioReviewsSwitch(mode === 'floor' ? 'podlahy' : 'malovani-obklady');
-  }
-  var tabFloor = document.getElementById('tab-floor');
+    if (window.domioReviewsSwitch) {
+      window.domioReviewsSwitch(mode === 'floor' ? 'podlahy' : 'malovani-obklady');
+    }
     var tabFloor = document.getElementById('tab-floor');
     var tabPainting = document.getElementById('tab-painting');
     var cardFloor = document.getElementById('calc-card-floor');
@@ -313,7 +312,6 @@
     var teaserBox = document.getElementById('domio-teaser-box');
     if (areaBox) areaBox.classList.add('visible');
     if (teaserBox) teaserBox.classList.add('visible');
-    // domio-blur-box sa NEZOBRAZUJE — ceny sú skryté, user ich dostane na email
     setTimeout(function() {
       if (areaBox) areaBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }, 150);
@@ -412,30 +410,26 @@
   function bindSubmit() {
     var btn = document.getElementById('btn-submit');
     if (!btn) return;
-    
     btn.addEventListener('click', async function() {
       var email = (document.getElementById('input-email') || {}).value || '';
       var partnerConsentElement = document.getElementById('input-partner-consent');
       var partnerConsent = partnerConsentElement ? partnerConsentElement.checked : false;
       var valid = true;
-
       if (!email.trim()) { showError('input-email', 'Zadejte platný e-mail'); valid = false; }
       if (!calcData) { alert('Nejprve vypočítejte cenu.'); return; }
       if (!valid) return;
-
       setLoading(btn, true);
       submittedEmail = email.trim();
-      
       var body;
       if (calcData._mode === 'painting') {
-        body = { 
-          email: submittedEmail, 
+        body = {
+          email: submittedEmail,
           calc_type: 'painting',
-          sub_type: calcData.display_name, 
+          sub_type: calcData.display_name,
           area_m2: calcData.net_area,
-          material_price: calcData.material_price, 
+          material_price: calcData.material_price,
           work_price: calcData.labor_price,
-          unit_material_price: 0, 
+          unit_material_price: 0,
           unit_labor_price: 0,
           link_material: calcData.link_material || '',
           link_accessories: calcData.link_accessories || '',
@@ -443,14 +437,14 @@
           partner_consent: partnerConsent
         };
       } else {
-        body = { 
-          email: submittedEmail, 
+        body = {
+          email: submittedEmail,
           calc_type: 'floor',
-          sub_type: calcData.display_name, 
+          sub_type: calcData.display_name,
           area_m2: calcData.area_m2,
-          material_price: calcData.material_price, 
+          material_price: calcData.material_price,
           work_price: calcData.work_price,
-          unit_material_price: calcData.unit_material_price, 
+          unit_material_price: calcData.unit_material_price,
           unit_labor_price: calcData.unit_labor_price,
           link_material: calcData.link_material || '',
           link_accessories: calcData.link_accessories || '',
@@ -458,7 +452,6 @@
           partner_consent: partnerConsent
         };
       }
-
       try {
         var res = await fetch(API + '/submit-lead', {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -566,6 +559,10 @@
     bindClearErrors();
   });
 })();
+
+/* =============================================
+   DOMIO — Affiliate Logo Strip
+   ============================================= */
 function injectAffiliateStrip() {
   var hero = document.querySelector('.domio-hero-section');
   if (!hero) return;
@@ -597,6 +594,7 @@ function injectAffiliateStrip() {
 window.addEventListener('load', function() {
   setTimeout(injectAffiliateStrip, 300);
 });
+
 /* =============================================
    DOMIO — Recenzie "Napsali jste nám"
    ============================================= */
@@ -668,7 +666,7 @@ const DOMIO_REVIEWS = {
 };
 
 function injectReviewsSection() {
-  const target = document.getElementById('domio-reviews');
+  var target = document.getElementById('domio-reviews');
   if (!target) return;
 
   target.innerHTML = `
@@ -687,19 +685,19 @@ function injectReviewsSection() {
     </section>
   `;
 
-  let cat = 'podlahy';
-  let idx = 0;
-  let timer = null;
+  var cat = 'podlahy';
+  var idx = 0;
+  var timer = null;
 
   function getReviews() {
     return DOMIO_REVIEWS[cat] || DOMIO_REVIEWS.podlahy;
   }
 
   function render() {
-    const rv = getReviews();
-    const r = rv[idx];
-    const track = document.getElementById('domio-rv-track');
-    const dots  = document.getElementById('domio-rv-dots');
+    var rv = getReviews();
+    var r = rv[idx];
+    var track = document.getElementById('domio-rv-track');
+    var dots  = document.getElementById('domio-rv-dots');
     if (!track || !dots || !r) return;
 
     track.innerHTML = `
@@ -723,13 +721,13 @@ function injectReviewsSection() {
       </div>
     `;
 
-    dots.innerHTML = rv.map((_, i) =>
-      `<button class="domio-rv-dot${i === idx ? ' active' : ''}" data-i="${i}" aria-label="Zpráva ${i + 1}"></button>`
-    ).join('');
+    dots.innerHTML = rv.map(function(_, i) {
+      return '<button class="domio-rv-dot' + (i === idx ? ' active' : '') + '" data-i="' + i + '" aria-label="Zpráva ' + (i + 1) + '"></button>';
+    }).join('');
   }
 
   function move(dir) {
-    const rv = getReviews();
+    var rv = getReviews();
     idx = (idx + dir + rv.length) % rv.length;
     render();
     resetTimer();
@@ -737,7 +735,7 @@ function injectReviewsSection() {
 
   function resetTimer() {
     clearInterval(timer);
-    timer = setInterval(() => move(1), 10000);
+    timer = setInterval(function() { move(1); }, 10000);
   }
 
   function switchCat(newCat) {
@@ -747,24 +745,22 @@ function injectReviewsSection() {
     render();
   }
 
-  document.getElementById('domio-rv-prev').addEventListener('click', () => move(-1));
-  document.getElementById('domio-rv-next').addEventListener('click', () => move(1));
+  document.getElementById('domio-rv-prev').addEventListener('click', function() { move(-1); });
+  document.getElementById('domio-rv-next').addEventListener('click', function() { move(1); });
 
-  document.getElementById('domio-rv-dots').addEventListener('click', (e) => {
-    const btn = e.target.closest('.domio-rv-dot');
+  document.getElementById('domio-rv-dots').addEventListener('click', function(e) {
+    var btn = e.target.closest('.domio-rv-dot');
     if (!btn) return;
     idx = parseInt(btn.dataset.i);
     render();
     resetTimer();
   });
-  
-// Hook do domioSetMode
-window.domioReviewsSwitch = switchCat;
+
+  window.domioReviewsSwitch = switchCat;
   render();
   resetTimer();
 }
 
-// Spustenie
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', injectReviewsSection);
 } else {
