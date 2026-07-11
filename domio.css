@@ -236,7 +236,7 @@ body { font-family: 'DM Sans', sans-serif; -webkit-text-size-adjust: 100%; }
 #domio-name-slot input:focus, #domio-email-slot input:focus {
   border-color: rgba(255,255,255,0.6) !important; background: rgba(255,255,255,0.18) !important;
 }
-#domio-teaser-box:has(.s-icon) {
+#domio-teaser-box.is-success {
   min-height: auto;
   padding-bottom: 28px;
 }
