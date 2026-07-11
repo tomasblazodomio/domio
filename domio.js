@@ -463,6 +463,7 @@
           gtag('event', 'lead_submitted', { calc_type: calcData._mode, area_m2: calcData._mode === 'painting' ? calcData.net_area : calcData.area_m2 });
         }
         document.getElementById('domio-teaser-box').innerHTML = '<div style="text-align:center;padding:8px 0"><div style="font-size:36px;margin-bottom:12px">🥳</div><p style="font-size:18px;font-weight:700;color:#fff;margin:0 0 12px">Úspěšně odesláno!</p><p style="font-size:14px;color:rgba(255,255,255,0.85);line-height:1.7;margin:0">Kompletní, detailní rozpočet materiálu a práce v PDF formátu vám dorazí do e-mailu během 2 minut.<br><br><em>Pokud e-mail nevidíte, zkontrolujte prosím složku Promo nebo Spam.</em></p></div>';
+        document.getElementById('domio-teaser-box').classList.add('is-success');
         showCraftsmanBox();
       } catch(e) { alert('Chyba při odesílání. Zkuste to prosím znovu.'); }
       finally { setLoading(btn, false); }
