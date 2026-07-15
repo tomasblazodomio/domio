@@ -38,9 +38,12 @@
   function injectHeroSubtitle() {
     var h1 = document.querySelector('.domio-h1');
     if (!h1 || document.querySelector('.domio-hero-subtitle')) return;
-    var sub = document.createElement('p');
+    var sub = document.createElement('div');
     sub.className = 'domio-hero-subtitle';
-    sub.innerHTML = 'Získejte okamžitý přehled o nákladech na materiál a práci řemeslníků. Kompletní rozpočet v PDF vám zašleme obratem na e-mail.';
+    sub.innerHTML =
+      '<span class="domio-hero-point"><span class="domio-hero-check">✓</span><span>Cena materiálu i práce</span></span>' +
+      '<span class="domio-hero-point"><span class="domio-hero-check">✓</span><span>Kompletní PDF na e-mail</span></span>' +
+      '<span class="domio-hero-point"><span class="domio-hero-check">✓</span><span>Zdarma, bez závazků</span></span>';
     h1.parentNode.insertBefore(sub, h1.nextSibling);
   }
 
