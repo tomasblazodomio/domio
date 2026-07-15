@@ -554,3 +554,47 @@ body { font-family: 'DM Sans', sans-serif; -webkit-text-size-adjust: 100%; }
     height: 26px;
   }
 }
+.domio-hero-subtitle {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 9px;
+  margin: 18px auto 0;
+  width: fit-content;
+  text-align: left;
+}
+
+.domio-hero-point {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  align-items: center;
+  gap: 10px;
+}
+
+.domio-hero-point span:last-child {
+  color: #f0f5f2;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.domio-hero-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #3ba776;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+@media (max-width: 600px) {
+  .domio-hero-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
