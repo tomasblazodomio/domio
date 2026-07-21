@@ -461,16 +461,16 @@
           body: JSON.stringify(body)
         });
         if (!res.ok) throw new Error();
+        var leadResult = await res.json();
         if (typeof gtag !== 'undefined') {
           gtag('event', 'generate_lead');
           gtag('event', 'lead_submitted', { calc_type: calcData._mode, area_m2: calcData._mode === 'painting' ? calcData.net_area : calcData.area_m2 });
         }
         var otoMode = calcData._mode;
-        var otoArea = otoMode === 'painting' ? calcData.net_area : calcData.area_m2;
-        var otoPrice = calcData.total_price || 0;
+        var leadId = leadResult.lead_id || '';
         if (typeof gtag !== 'undefined') gtag('event', 'oto_redirect', { calc_type: otoMode });
         var otoUrl = (otoMode === 'painting' ? '/malovani-pro' : '/podlahy-pro') +
-          '?sent=1&area=' + encodeURIComponent(otoArea) + '&price=' + encodeURIComponent(otoPrice);
+          '?sent=1&lead_id=' + encodeURIComponent(leadId);
         window.location.href = otoUrl;
       } catch(e) { alert('Chyba při odesílání. Zkuste to prosím znovu.'); }
       finally { setLoading(btn, false); }
