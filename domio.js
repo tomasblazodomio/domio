@@ -465,9 +465,13 @@
           gtag('event', 'generate_lead');
           gtag('event', 'lead_submitted', { calc_type: calcData._mode, area_m2: calcData._mode === 'painting' ? calcData.net_area : calcData.area_m2 });
         }
-        document.getElementById('domio-teaser-box').innerHTML = '<div style="text-align:center;padding:8px 0"><div style="font-size:36px;margin-bottom:12px">🥳</div><p style="font-size:18px;font-weight:700;color:#fff;margin:0 0 12px">Úspěšně odesláno!</p><p style="font-size:14px;color:rgba(255,255,255,0.85);line-height:1.7;margin:0">Kompletní, detailní rozpočet materiálu a práce v PDF formátu vám dorazí do e-mailu během 2 minut.<br><br><em>Pokud e-mail nevidíte, zkontrolujte prosím složku Promo nebo Spam.</em></p></div>';
-        document.getElementById('domio-teaser-box').classList.add('is-success');
-        showCraftsmanBox();
+        var otoMode = calcData._mode;
+        var otoArea = otoMode === 'painting' ? calcData.net_area : calcData.area_m2;
+        var otoPrice = calcData.total_price || 0;
+        if (typeof gtag !== 'undefined') gtag('event', 'oto_redirect', { calc_type: otoMode });
+        var otoUrl = (otoMode === 'painting' ? '/malovani-pro' : '/podlahy-pro') +
+          '?sent=1&area=' + encodeURIComponent(otoArea) + '&price=' + encodeURIComponent(otoPrice);
+        window.location.href = otoUrl;
       } catch(e) { alert('Chyba při odesílání. Zkuste to prosím znovu.'); }
       finally { setLoading(btn, false); }
     });
