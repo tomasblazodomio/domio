@@ -296,8 +296,7 @@
     var submitEl = document.getElementById('btn-submit');
     if (emailEl  && document.getElementById('domio-email-slot'))  document.getElementById('domio-email-slot').appendChild(emailEl);
     if (submitEl && document.getElementById('domio-submit-slot')) document.getElementById('domio-submit-slot').appendChild(submitEl);
-    if (document.getElementById('domio-consent-text') && document.getElementById('domio-teaser-consent-slot')) document.getElementById('domio-teaser-consent-slot').appendChild(document.getElementById('domio-consent-text'));
-    if (document.getElementById('domio-partner-consent-wrap') && document.getElementById('domio-teaser-consent-slot')) document.getElementById('domio-teaser-consent-slot').appendChild(document.getElementById('domio-partner-consent-wrap'));
+    if (document.getElementById('domio-partner-consent-wrap') && document.getElementById('domio-capture-consent-slot')) document.getElementById('domio-capture-consent-slot').appendChild(document.getElementById('domio-partner-consent-wrap'));
   }
 
   function repositionResultsAboveReviews() {
@@ -779,13 +778,11 @@ if (document.readyState === 'loading') {
   injectReviewsSection();
 }
 function watchAndRelocateConsent() {
-  var teaserSlot = document.getElementById('domio-teaser-consent-slot');
-  if (!teaserSlot) return;
+  var captureSlot = document.getElementById('domio-capture-consent-slot');
+  if (!captureSlot) return;
   var observer = new MutationObserver(function() {
-    var consentText = document.getElementById('domio-consent-text');
     var partnerWrap = document.getElementById('domio-partner-consent-wrap');
-    if (consentText && consentText.parentNode !== teaserSlot) teaserSlot.appendChild(consentText);
-    if (partnerWrap && partnerWrap.parentNode !== teaserSlot) teaserSlot.appendChild(partnerWrap);
+    if (partnerWrap && partnerWrap.parentNode !== captureSlot) captureSlot.appendChild(partnerWrap);
   });
   observer.observe(document.body, { childList: true, subtree: true });
 }
