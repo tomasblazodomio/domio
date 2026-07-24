@@ -628,9 +628,13 @@ body { font-family: 'DM Sans', sans-serif; -webkit-text-size-adjust: 100%; }
 /* FIX: čitelnost GDPR textu a checkboxu na tmavém pozadí */
 #domio-teaser-consent-slot {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 14px;
   font-size: 12.5px;
+}
+#domio-teaser-consent-slot #domio-consent-text {
+  display: none;
 }
 #domio-teaser-consent-slot,
 #domio-teaser-consent-slot * {
@@ -640,7 +644,7 @@ body { font-family: 'DM Sans', sans-serif; -webkit-text-size-adjust: 100%; }
   color: #B7E4C7 !important;
 }
 #domio-teaser-consent-slot label {
-   max-width: 380px;
+  max-width: 380px;
   text-align: left;
   display: flex;
   align-items: flex-start;
