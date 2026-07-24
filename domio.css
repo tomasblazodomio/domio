@@ -175,12 +175,13 @@ body { font-family: 'DM Sans', sans-serif; -webkit-text-size-adjust: 100%; }
 .domio-content-wrap { max-width: 560px; margin: 0 auto; padding: 32px 16px 64px; }
 
 /* ===== CLS FIX =====
-   Tieto tri boxy menia display:none -> display:block po načítaní JS.
-   Bez rezervovaného miesta to spôsobuje Cumulative Layout Shift (CLS),
-   pretože obsah pod nimi sa "skáče" nadol v momente zobrazenia.
-   min-height rezervuje priestor vopred, takže shift sa nestane.
-   Hodnoty min-height sú odhadnuté podľa reálnej výšky obsahu boxov;
-   v prípade potreby ich možno doladiť bez zmeny logiky. */
+   Tieto boxy menia display:none -> display:block po načítaní JS.
+   Bez rezervovaného miesta to spôsobuje Cumulative Layout Shift (CLS).
+   min-height rezervuje priestor vopred. Hodnoty sú odhadnuté podľa
+   reálnej výšky obsahu; po nasadení over v Lighthouse / vizuálne
+   a v prípade potreby doladi bez zmeny logiky. */
+
+#domio-results-wrap { box-sizing: border-box; }
 
 #domio-area-box {
   display: none; text-align: center; padding: 28px 20px 24px;
@@ -193,49 +194,60 @@ body { font-family: 'DM Sans', sans-serif; -webkit-text-size-adjust: 100%; }
 .area-number { font-size: 64px; font-weight: 700; color: var(--domio-green); line-height: 1; margin-bottom: 4px; letter-spacing: -0.02em; }
 .area-unit { font-size: 22px; font-weight: 400; color: var(--domio-muted); }
 
-#domio-blur-box {
+#domio-capture-box {
   display: none; background: #fff; border: 1.5px solid var(--domio-border);
-  border-radius: 12px; margin-top: 12px; box-shadow: var(--shadow); overflow: hidden;
-  min-height: 230px; box-sizing: border-box;
+  border-radius: 12px; margin-top: 12px; padding: 26px 24px 22px;
+  box-shadow: var(--shadow); box-sizing: border-box; text-align: center;
+  min-height: 280px;
 }
-#domio-blur-box.visible { display: block; animation: fadeUp 0.4s ease 0.1s both; }
-.blur-header { background: var(--domio-bg); padding: 12px 20px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--domio-muted); border-bottom: 1px solid var(--domio-border); }
-.blur-row { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--domio-border); gap: 12px; }
-.blur-row:last-of-type { border-bottom: none; }
-.blur-row-label { font-size: 14px; color: var(--domio-text); font-weight: 500; display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
-.blur-row-value { font-size: 18px; font-weight: 700; color: var(--domio-text); filter: blur(6px); user-select: none; -webkit-user-select: none; transition: filter 0.6s ease; white-space: nowrap; }
-.blur-row.is-total { background: var(--domio-green-pale); padding: 20px; }
-.blur-row.is-total .blur-row-label { font-size: 15px; font-weight: 600; color: var(--domio-green); }
-.blur-row.is-total .blur-row-value { font-size: 26px; color: var(--domio-green); filter: blur(8px); }
-.blur-lock { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 10px 20px 14px; font-size: 12px; color: var(--domio-muted); }
+#domio-capture-box.visible { display: block; animation: fadeUp 0.4s ease 0.1s both; }
+.capture-headline {
+  font-family: 'DM Sans', sans-serif; font-size: 19px; font-weight: 700;
+  color: var(--domio-text); line-height: 1.35; margin-bottom: 8px;
+}
+.capture-subline {
+  font-size: 14px; color: var(--domio-muted); margin-bottom: 18px; line-height: 1.5;
+}
+#domio-capture-box #domio-email-slot input {
+  width: 100% !important; height: 52px; padding: 0 16px !important;
+  font-size: 16px !important; font-family: 'DM Sans', sans-serif;
+  color: var(--domio-text) !important; background: #fff !important;
+  border: 1.5px solid var(--domio-border) !important;
+  border-radius: var(--radius) !important; box-sizing: border-box;
+  outline: none; margin-bottom: 12px; display: block; -webkit-appearance: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+#domio-capture-box #domio-email-slot input::placeholder { color: var(--domio-muted); }
+#domio-capture-box #domio-email-slot input:focus {
+  border-color: var(--domio-green-light) !important;
+  box-shadow: 0 0 0 3px rgba(64,145,108,0.15);
+}
 
 #domio-teaser-box {
   display: none; background: linear-gradient(135deg, #1B4332 0%, #2D6A4F 100%);
-  border-radius: 12px; padding: 28px 24px; margin-top: 16px; color: #fff;
-  min-height: 360px; box-sizing: border-box;
+  border-radius: 12px; padding: 22px 22px 20px; margin-top: 16px; color: #fff;
+  min-height: 230px; box-sizing: border-box;
 }
 #domio-teaser-box.visible { display: block; animation: fadeUp 0.45s ease 0.15s both; }
-.teaser-badge { display: inline-block; background: rgba(255,255,255,0.15); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; }
-.teaser-headline { font-size: clamp(18px, 5vw, 24px); font-weight: 700; line-height: 1.3; margin-bottom: 10px; }
-.teaser-headline span { color: #B7E4C7; }
-.teaser-body { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.6; margin-bottom: 16px; }
-.teaser-free { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 10px 14px; font-size: 13px; color: rgba(255,255,255,0.9); margin-bottom: 20px; width: 100%; box-sizing: border-box; }
-.teaser-free strong { color: #fff; }
-.teaser-form-title { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 12px; }
+.teaser-badge-mini {
+  display: inline-block; background: rgba(255,255,255,0.15); color: #fff;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 12px; border-radius: 20px; margin-bottom: 14px;
+}
+.teaser-details-title { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 12px; }
+.teaser-checklist { list-style: none; margin: 0 0 16px; padding: 0; }
+.teaser-checklist li {
+  font-size: 14px; color: rgba(255,255,255,0.92); line-height: 1.7;
+  padding-left: 26px; position: relative;
+}
+.teaser-checklist li::before {
+  content: "✅"; position: absolute; left: 0; top: 0; font-size: 13px;
+}
+.teaser-legal-text {
+  font-size: 11.5px; color: rgba(255,255,255,0.6); line-height: 1.6;
+  border-top: 1px solid rgba(255,255,255,0.15); padding-top: 12px; margin-top: 4px;
+}
 
-#domio-name-slot input, #domio-email-slot input,
-#domio-name-slot, #domio-email-slot {
-  width: 100% !important; background: rgba(255,255,255,0.12) !important;
-  border: 1.5px solid rgba(255,255,255,0.25) !important;
-  border-radius: var(--radius) !important; color: #fff !important;
-  height: 52px; padding: 0 16px !important; font-size: 16px !important;
-  font-family: 'DM Sans', sans-serif; box-sizing: border-box;
-  margin-bottom: 10px; display: block; -webkit-appearance: none; outline: none;
-}
-#domio-name-slot input::placeholder, #domio-email-slot input::placeholder { color: rgba(255,255,255,0.5); }
-#domio-name-slot input:focus, #domio-email-slot input:focus {
-  border-color: rgba(255,255,255,0.6) !important; background: rgba(255,255,255,0.18) !important;
-}
 #domio-teaser-box.is-success {
   min-height: auto;
   padding-bottom: 28px;
@@ -319,6 +331,7 @@ body { font-family: 'DM Sans', sans-serif; -webkit-text-size-adjust: 100%; }
 @media (min-width: 600px) { .domio-calc-list { grid-template-columns: 1fr 1fr; } }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes spin { to { transform: rotate(360deg); } }
+
 /* Affiliate Logo Strip */
 .domio-affiliate-strip {
   padding: 14px 0 10px;
@@ -358,6 +371,7 @@ body { font-family: 'DM Sans', sans-serif; -webkit-text-size-adjust: 100%; }
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+
 /* =============================================
    DOMIO — Recenzie "Napsali jste nám"
    ============================================= */
