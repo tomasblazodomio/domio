@@ -115,27 +115,17 @@
   };
 
   function updateTeaserContent(mode) {
-    var headline = document.getElementById('teaser-headline');
-    var body = document.getElementById('teaser-body');
     var badge = document.getElementById('teaser-badge');
-    var formTitle = document.querySelector('.teaser-form-title');
-    if (mode === 'painting') {
-      if (headline) headline.innerHTML = 'Váš rozpočet je připraven —<br><span>kam ho máme poslat?</span>';
-      if (body) body.innerHTML = 'Kompletní rozpočet <strong style="color:#fff">barvy, materiálu i práce</strong> — do 2 minut ve vaší e-mailové schránce.';
-      if (badge) badge.textContent = '🖌️ Malování';
-    } else {
-      if (headline) headline.innerHTML = 'Váš rozpočet je připraven —<br><span>kam ho máme poslat?</span>';
-      if (body) body.innerHTML = 'Kompletní rozpočet <strong style="color:#fff">materiálu, práce i odpadu</strong> — do 2 minut ve vaší e-mailové schránce.';
-      if (badge) badge.textContent = '🪵 Podlahy';
-    }
-    if (formTitle) formTitle.innerHTML = '📩 Zadejte e-mail a dostanete:<br><span style="font-size:13px;font-weight:400;opacity:0.9;display:block;margin-top:6px;line-height:1.6;">✅ Cenu materiálu i práce<br>✅ Kde nejlépe nakoupit (s odkazy)<br>✅ PDF rozpočet do 2 minut</span>';
+    if (badge) badge.textContent = mode === 'painting' ? '🖌️ Malování' : '🪵 Podlahy';
   }
 
   function resetResults() {
     var areaBox = document.getElementById('domio-area-box');
+    var captureBox = document.getElementById('domio-capture-box');
     var teaserBox = document.getElementById('domio-teaser-box');
     var craftsmanBox = document.getElementById('domio-craftsman-box');
     if (areaBox) areaBox.classList.remove('visible');
+    if (captureBox) captureBox.classList.remove('visible');
     if (teaserBox) teaserBox.classList.remove('visible');
     if (craftsmanBox) craftsmanBox.classList.remove('visible');
     calcData = null;
@@ -306,14 +296,27 @@
     var submitEl = document.getElementById('btn-submit');
     if (emailEl  && document.getElementById('domio-email-slot'))  document.getElementById('domio-email-slot').appendChild(emailEl);
     if (submitEl && document.getElementById('domio-submit-slot')) document.getElementById('domio-submit-slot').appendChild(submitEl);
-    if (document.getElementById('domio-consent-text') && document.getElementById('domio-submit-slot')) document.getElementById('domio-submit-slot').appendChild(document.getElementById('domio-consent-text'));
-    if (document.getElementById('domio-partner-consent-wrap') && document.getElementById('domio-submit-slot')) document.getElementById('domio-submit-slot').parentNode.insertBefore(document.getElementById('domio-partner-consent-wrap'), document.getElementById('domio-submit-slot'));
+    if (document.getElementById('domio-consent-text') && document.getElementById('domio-teaser-consent-slot')) document.getElementById('domio-teaser-consent-slot').appendChild(document.getElementById('domio-consent-text'));
+    if (document.getElementById('domio-partner-consent-wrap') && document.getElementById('domio-teaser-consent-slot')) document.getElementById('domio-teaser-consent-slot').appendChild(document.getElementById('domio-partner-consent-wrap'));
+  }
+
+  function repositionResultsAboveReviews() {
+    var reviewsEl = document.getElementById('domio-reviews');
+    var trustBadges = document.querySelector('.domio-trust-badges');
+    var resultsWrap = document.getElementById('domio-results-wrap');
+    var teaserBox = document.getElementById('domio-teaser-box');
+    if (!reviewsEl || !reviewsEl.parentNode) return;
+    if (trustBadges) reviewsEl.parentNode.insertBefore(trustBadges, reviewsEl);
+    if (resultsWrap)  reviewsEl.parentNode.insertBefore(resultsWrap, reviewsEl);
+    if (teaserBox)    reviewsEl.parentNode.insertBefore(teaserBox, reviewsEl);
   }
 
   function showResults() {
     var areaBox = document.getElementById('domio-area-box');
+    var captureBox = document.getElementById('domio-capture-box');
     var teaserBox = document.getElementById('domio-teaser-box');
     if (areaBox) areaBox.classList.add('visible');
+    if (captureBox) captureBox.classList.add('visible');
     if (teaserBox) teaserBox.classList.add('visible');
     setTimeout(function() {
       if (areaBox) areaBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -561,6 +564,7 @@
     updateTeaserContent('floor');
     injectSpinners();
     moveFormElements();
+    repositionResultsAboveReviews();
     bindCalculate();
     bindSubmit();
     bindCraftsmanSubmit();
