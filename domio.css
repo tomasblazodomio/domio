@@ -635,7 +635,12 @@ body { font-family: 'DM Sans', sans-serif; -webkit-text-size-adjust: 100%; }
 #domio-capture-consent-slot {
   display: flex;
   justify-content: center;
-  margin-top: 4px;
+  margin-top: 16px;
+}
+#domio-capture-consent-slot label,
+#domio-capture-consent-slot label * {
+  color: #4B5563 !important;
+  opacity: 1 !important;
 }
 #domio-capture-consent-slot label {
   max-width: 380px;
@@ -645,7 +650,6 @@ body { font-family: 'DM Sans', sans-serif; -webkit-text-size-adjust: 100%; }
   gap: 8px;
   line-height: 1.5;
   cursor: pointer;
-  color: var(--domio-muted);
   font-size: 12.5px;
 }
 #domio-capture-consent-slot input[type="checkbox"] {
