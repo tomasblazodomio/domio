@@ -778,3 +778,15 @@ if (document.readyState === 'loading') {
 } else {
   injectReviewsSection();
 }
+function watchAndRelocateConsent() {
+  var teaserSlot = document.getElementById('domio-teaser-consent-slot');
+  if (!teaserSlot) return;
+  var observer = new MutationObserver(function() {
+    var consentText = document.getElementById('domio-consent-text');
+    var partnerWrap = document.getElementById('domio-partner-consent-wrap');
+    if (consentText && consentText.parentNode !== teaserSlot) teaserSlot.appendChild(consentText);
+    if (partnerWrap && partnerWrap.parentNode !== teaserSlot) teaserSlot.appendChild(partnerWrap);
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+}
+watchAndRelocateConsent();
