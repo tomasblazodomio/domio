@@ -236,8 +236,8 @@ body { font-family: 'DM Sans', sans-serif; -webkit-text-size-adjust: 100%; }
 }
 .teaser-details-title { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 12px; }
 .teaser-checklist {
-  list-style: none; margin: 0 0 16px; padding: 0;
-  display: flex; flex-direction: column; align-items: center;
+  list-style: none; margin: 0 auto 16px; padding: 0;
+  display: inline-flex; flex-direction: column; align-items: flex-start;
 }
 .teaser-checklist li {
   font-size: 14px; color: rgba(255,255,255,0.92); line-height: 1.7;
