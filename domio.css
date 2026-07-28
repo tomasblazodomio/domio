@@ -47,7 +47,7 @@ body { font-family: 'DM Sans', sans-serif; -webkit-text-size-adjust: 100%; }
 .domio-hero-section.w-section {
   position: relative;
   background-color: transparent !important;
-  background-image: linear-gradient(135deg, rgba(27,67,50,0.92), rgba(27,67,50,0.85)), url('https://cdn.prod.website-files.com/6a1a9c2c9b7db52174bdd4ed/6a2d7cb9d79d95a10f975a72_Copilot_20260613_174641.png') !important;
+  background-image: linear-gradient(135deg, rgba(27,67,50,0.92), rgba(27,67,50,0.85)), url('https://cdn.prod.website-files.com/6a1a9c2c9b7db52174bdd4ed/6a68ef67bab3f71f4bfbf595_domio-hero-optimized.webp') !important;
   background-size: cover !important;
   background-position: center !important;
   background-blend-mode: multiply !important;
