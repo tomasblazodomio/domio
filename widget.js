@@ -35,11 +35,13 @@
       return;
     }
 
+    var productCategory = container.getAttribute("data-product-category") || "";
+
     var domain = window.location.hostname;
 
     injectStyles();
     container.innerHTML = buildMarkup();
-    wireUpWidget(container, apiKey, domain);
+    wireUpWidget(container, apiKey, domain, productCategory);
   }
 
   function injectStyles() {
@@ -170,7 +172,7 @@
     );
   }
 
-  function wireUpWidget(root, apiKey, domain) {
+  function wireUpWidget(root, apiKey, domain, productCategory) {
     var lastResult = null;
     var areaMode = "manual";
 
@@ -278,6 +280,7 @@
       if (vnejsi) params.append("pocet_vnejsi_rohy", vnejsi);
       params.append("api_key", apiKey);
       params.append("domain", domain);
+      params.append("product_category", productCategory);
 
       calcBtn.disabled = true;
       loadingEl.style.display = "block";
