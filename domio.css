@@ -743,11 +743,11 @@ body { font-family: 'DM Sans', sans-serif; -webkit-text-size-adjust: 100%; }
 /* DĚKUJEME — sociální důkaz v číslech */
 .dr-thanks { background: var(--domio-green-pale); border-radius: 16px; padding: 36px 28px; text-align: center; margin-bottom: 24px; box-shadow: 0 10px 24px -14px rgba(27,67,50,0.20); }
 .dr-thanks-icon { display: inline-flex; align-items: center; justify-content: center; width: 52px; height: 52px; border-radius: 50%; background: #fff; color: var(--domio-green); margin-bottom: 14px; }
-.dr-thanks-title { font-weight: 800; font-size: 22px; color: var(--domio-green-dark); margin: 0 0 22px; }
+.dr-thanks-title { font-weight: 800; font-size: 25px; color: var(--domio-green-dark); margin: 0 0 22px; }
 .dr-thanks-stats { display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap; }
 .dr-thanks-stat { text-align: center; }
-.dr-thanks-number { display: block; font-weight: 800; font-size: 34px; color: var(--domio-green-dark); }
-.dr-thanks-text { font-size: 13.5px; color: var(--domio-green-dark); opacity: 0.8; margin: 4px 0 0; max-width: 190px; font-weight: 500; line-height: 1.4; }
+.dr-thanks-number { display: block; font-weight: 800; font-size: 40px; color: var(--domio-green-dark); }
+.dr-thanks-text { font-size: 15.5px; color: var(--domio-green-dark); opacity: 0.8; margin: 6px 0 0; max-width: 210px; font-weight: 500; line-height: 1.45; }
 .dr-thanks-divider { width: 1px; height: 48px; background: rgba(27,67,50,0.18); }
 @media (max-width: 480px) { .dr-thanks-divider { display: none; } }
 
@@ -758,23 +758,23 @@ body { font-family: 'DM Sans', sans-serif; -webkit-text-size-adjust: 100%; }
 .dr-stat-visual { width: 64px; height: 64px; margin: 0 auto 14px; display: flex; align-items: center; justify-content: center; }
 .dr-ring-fill { transition: stroke-dashoffset 1.4s ease; }
 .dr-icon-circle { width: 64px; height: 64px; border-radius: 50%; background: var(--domio-green-pale); color: var(--domio-green-dark); display: flex; align-items: center; justify-content: center; }
-.dr-stat-number { display: block; font-weight: 800; font-size: 28px; color: var(--domio-green); margin-bottom: 8px; }
-.dr-stat-text { font-size: 13.5px; color: var(--domio-muted); line-height: 1.55; margin: 0; font-weight: 400; }
+.dr-stat-number { display: block; font-weight: 800; font-size: 32px; color: var(--domio-green); margin-bottom: 10px; }
+.dr-stat-text { font-size: 15px; color: var(--domio-muted); line-height: 1.55; margin: 0; font-weight: 400; }
 
 /* BENEFITY */
 .dr-benefits { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 40px; }
 .dr-benefit { background: #ffffff; border-radius: 12px; box-shadow: 0 10px 24px -14px rgba(27,67,50,0.20); padding: 30px 24px; text-align: center; transition: transform 0.2s ease, box-shadow 0.2s ease; }
 .dr-benefit:hover { transform: translateY(-3px); box-shadow: 0 24px 60px -28px rgba(27,67,50,0.28); }
 .dr-benefit__icon { display: inline-flex; align-items: center; justify-content: center; width: 52px; height: 52px; border-radius: 12px; background: var(--domio-green-pale); color: var(--domio-green-dark); margin-bottom: 16px; }
-.dr-benefit__title { font-weight: 800; font-size: 17px; margin: 0 0 8px; color: var(--domio-text); }
-.dr-benefit__desc { font-size: 13.5px; color: var(--domio-muted); margin: 0; line-height: 1.5; font-weight: 400; }
+.dr-benefit__title { font-weight: 800; font-size: 19px; margin: 0 0 8px; color: var(--domio-text); }
+.dr-benefit__desc { font-size: 15px; color: var(--domio-muted); margin: 0; line-height: 1.5; font-weight: 400; }
 
 /* ŘEMESLNÍK + E-SHOP — dvě CTA karty vedle sebe */
 .dr-b2b-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 56px; }
 @media (max-width: 720px) { .dr-b2b-row { grid-template-columns: 1fr; } }
 .dr-b2b-card { background: var(--domio-green-dark); border-radius: 16px; padding: 40px 28px; text-align: center; box-shadow: 0 24px 60px -28px rgba(27,67,50,0.28); display: flex; flex-direction: column; align-items: center; }
 .dr-b2b-icon { display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 50%; background: rgba(255,255,255,0.12); color: #fff; margin-bottom: 16px; }
-.dr-b2b-card h2 { font-weight: 800; font-size: 21px; color: #fff; margin: 0 0 10px; }
-.dr-b2b-card p { font-size: 14px; color: #DCEAE1; max-width: 320px; margin: 0 auto 22px; line-height: 1.6; font-weight: 400; }
-.dr-b2b-btn { display: inline-block; background: #fff; color: var(--domio-green-dark); font-weight: 700; font-size: 14.5px; padding: 13px 26px; border-radius: 12px; text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease; margin-top: auto; }
+.dr-b2b-card h2 { font-weight: 800; font-size: 23px; color: #fff; margin: 0 0 10px; }
+.dr-b2b-card p { font-size: 15.5px; color: #DCEAE1; max-width: 320px; margin: 0 auto 22px; line-height: 1.6; font-weight: 400; }
+.dr-b2b-btn { display: inline-block; background: #fff; color: var(--domio-green-dark); font-weight: 700; font-size: 15.5px; padding: 13px 26px; border-radius: 12px; text-decoration: none; transition: transform 0.2s ease, box-shadow 0.2s ease; margin-top: auto; }
 .dr-b2b-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 40px -16px rgba(0,0,0,0.35); }
