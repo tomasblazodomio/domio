@@ -661,3 +661,79 @@ body { font-family: 'DM Sans', sans-serif; -webkit-text-size-adjust: 100%; }
   flex-shrink: 0;
   margin-top: 2px;
 }
+/* =============================================
+   DOMIO — Redesign: hero spacing + trust row (kalkulačka + loga)
+   ============================================= */
+.domio-hero-section,
+.domio-hero-section.w-section {
+  padding-bottom: 32px !important;
+}
+.domio-hero-subtitle {
+  flex-direction: row !important;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px !important;
+  margin: 16px auto 0 !important;
+  width: auto !important;
+}
+.domio-hero-point {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.12);
+  padding: 7px 14px;
+  border-radius: 999px;
+}
+.domio-hero-point span:last-child {
+  font-size: 13.5px !important;
+}
+
+.dr-trust-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto 24px;
+  padding: 24px 20px 0;
+  align-items: stretch;
+}
+@media (max-width: 720px) {
+  .dr-trust-row { grid-template-columns: 1fr; }
+}
+.dr-trust-row .domio-form-card,
+.dr-trust-row .domio-form-card.w-div {
+  max-width: none !important;
+  margin: 0 !important;
+  width: 100%;
+}
+.dr-logos-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.10);
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.dr-logos-label {
+  font-size: 11px; color: #ccc; text-align: center; letter-spacing: 0.5px;
+  margin: 0 0 16px; font-family: 'DM Sans', sans-serif;
+}
+.dr-logos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  gap: 18px;
+  align-items: center;
+}
+.dr-logos-grid img {
+  max-height: 38px; width: auto; max-width: 100%; margin: 0 auto; display: block;
+  filter: grayscale(100%);
+  opacity: 0.55;
+  transition: filter 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
+}
+.dr-logos-grid img:hover {
+  filter: grayscale(0%);
+  opacity: 1;
+  transform: translateY(-2px) scale(1.06);
+}
