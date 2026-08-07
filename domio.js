@@ -603,7 +603,84 @@ function injectTrustRow() {
 
 window.addEventListener('load', function() {
   setTimeout(injectTrustRow, 300);
+  setTimeout(injectExtraSections, 500);
 });
+
+function injectExtraSections() {
+  var trustRow = document.getElementById('dr-trust-row');
+  if (!trustRow || document.getElementById('dr-extra-sections')) return;
+
+  var wrap = document.createElement('div');
+  wrap.id = 'dr-extra-sections';
+  wrap.innerHTML = `
+    <div class="dr-thanks">
+      <span class="dr-thanks-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="24" height="24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"></path></svg></span>
+      <h2 class="dr-thanks-title">Věříte nám. Děkujeme!</h2>
+      <div class="dr-thanks-stats">
+        <div class="dr-thanks-stat"><span class="dr-thanks-number">2 500+</span><p class="dr-thanks-text">z vás si u nás přepočítalo cenu rekonstrukce</p></div>
+        <div class="dr-thanks-divider" aria-hidden="true"></div>
+        <div class="dr-thanks-stat"><span class="dr-thanks-number">1 100+</span><p class="dr-thanks-text">z toho si zažádalo o přesný nákupní seznam</p></div>
+      </div>
+    </div>
+    <div class="dr-stats-row">
+      <div class="dr-card dr-stat-card">
+        <span class="dr-stat-visual"><svg viewBox="0 0 80 80" width="64" height="64" aria-hidden="true"><circle cx="40" cy="40" r="34" fill="none" stroke="#EDEEF0" stroke-width="7"></circle><circle class="dr-ring-fill" cx="40" cy="40" r="34" fill="none" stroke="#2D6A4F" stroke-width="7" stroke-linecap="round" stroke-dasharray="213.6" stroke-dashoffset="213.6" data-target-offset="42.7" transform="rotate(-90 40 40)"></circle></svg></span>
+        <span class="dr-stat-number">80 %</span><p class="dr-stat-text">Zákazníkům jsme už ušetřili 80&nbsp;% času při nákupu stavebnin.</p>
+      </div>
+      <div class="dr-card dr-stat-card">
+        <span class="dr-stat-visual"><span class="dr-icon-circle" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15.5 13.5"></polyline></svg></span></span>
+        <span class="dr-stat-number">58 min</span><p class="dr-stat-text">V průměru méně stráví lidé v obchodě díky DOMIO kalkulačkám.</p>
+      </div>
+      <div class="dr-card dr-stat-card">
+        <span class="dr-stat-visual"><svg viewBox="0 0 80 80" width="64" height="64" aria-hidden="true"><circle cx="40" cy="40" r="34" fill="none" stroke="#EDEEF0" stroke-width="7"></circle><circle class="dr-ring-fill" cx="40" cy="40" r="34" fill="none" stroke="#2D6A4F" stroke-width="7" stroke-linecap="round" stroke-dasharray="213.6" stroke-dashoffset="213.6" data-target-offset="0" transform="rotate(-90 40 40)"></circle></svg></span>
+        <span class="dr-stat-number">100 %</span><p class="dr-stat-text">Díky DOMIO kalkulačkám máte úplný přehled o ceně celé rekonstrukce — nemusíte hádat, ani spoléhat jen na to, co řekne řemeslník.</p>
+      </div>
+    </div>
+    <div class="dr-benefits">
+      <div class="dr-card dr-benefit">
+        <span class="dr-benefit__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></span>
+        <h3 class="dr-benefit__title">Bleskový výpočet</h3><p class="dr-benefit__desc">Výsledek do pár vteřin, žádné čekání na zpětný telefonát.</p>
+      </div>
+      <div class="dr-card dr-benefit">
+        <span class="dr-benefit__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3"></circle><line x1="12" y1="2" x2="12" y2="5"></line><line x1="12" y1="19" x2="12" y2="22"></line><line x1="2" y1="12" x2="5" y2="12"></line><line x1="19" y1="12" x2="22" y2="12"></line></svg></span>
+        <h3 class="dr-benefit__title">Přesnost na milimetr</h3><p class="dr-benefit__desc">Počítáme přesně podle vašich rozměrů, ne podle odhadu.</p>
+      </div>
+      <div class="dr-card dr-benefit">
+        <span class="dr-benefit__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><path d="M12 22s8-4.5 8-11V5l-8-3-8 3v6c0 6.5 8 11 8 11z"></path><polyline points="9 12 11 14 15 10"></polyline></svg></span>
+        <h3 class="dr-benefit__title">Nulový stres</h3><p class="dr-benefit__desc">Do obchodu jdete s jasným rozpočtem v ruce.</p>
+      </div>
+    </div>
+    <div class="dr-b2b-row">
+      <div class="dr-b2b-card">
+        <span class="dr-b2b-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z"></path></svg></span>
+        <h2>Jste řemeslník?</h2><p>Pokud chcete, abychom vás doporučovali reálným zákazníkům z vašeho okolí, kteří hledají spojení s řemeslníkem, zaregistrujte se. Po ověření vás začneme doporučovat.</p>
+        <a href="/pro-remeslniky" class="dr-b2b-btn">Registrovat se zdarma</a>
+      </div>
+      <div class="dr-b2b-card">
+        <span class="dr-b2b-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg></span>
+        <h2>Máte e-shop?</h2><p>Chcete implementovat widget kalkulačky mydomio.cz přímo do vašeho e-shopu? Klikněte a zjistěte, jak na to.</p>
+        <a href="/b2b-podlahy" class="dr-b2b-btn">Více informací</a>
+      </div>
+    </div>
+  `;
+
+  trustRow.parentNode.insertBefore(wrap, trustRow.nextSibling);
+
+  var rings = wrap.querySelectorAll('.dr-ring-fill');
+  if (!('IntersectionObserver' in window)) {
+    rings.forEach(function(r) { r.style.strokeDashoffset = r.dataset.targetOffset; });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.style.strokeDashoffset = entry.target.dataset.targetOffset;
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.4 });
+  rings.forEach(function(r) { io.observe(r); });
+}
 
 /* =============================================
    DOMIO — Recenzie "Napsali jste nám"
