@@ -665,7 +665,8 @@ function injectExtraSections() {
     </div>
   `;
 
-  trustRow.parentNode.insertBefore(wrap, trustRow.nextSibling);
+  var drAnchor = document.getElementById('domio-teaser-box') || document.getElementById('domio-results-wrap') || trustRow;
+  drAnchor.parentNode.insertBefore(wrap, drAnchor.nextSibling);
 
   var rings = wrap.querySelectorAll('.dr-ring-fill');
   if (!('IntersectionObserver' in window)) {
