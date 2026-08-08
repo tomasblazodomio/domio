@@ -300,14 +300,15 @@
   }
 
   function repositionResultsAboveReviews() {
-    var reviewsEl = document.getElementById('domio-reviews');
+    var formCard = document.querySelector('.domio-form-card');
     var trustBadges = document.querySelector('.domio-trust-badges');
     var resultsWrap = document.getElementById('domio-results-wrap');
     var teaserBox = document.getElementById('domio-teaser-box');
-    if (!reviewsEl || !reviewsEl.parentNode) return;
-    if (trustBadges) reviewsEl.parentNode.insertBefore(trustBadges, reviewsEl);
-    if (resultsWrap)  reviewsEl.parentNode.insertBefore(resultsWrap, reviewsEl);
-    if (teaserBox)    reviewsEl.parentNode.insertBefore(teaserBox, reviewsEl);
+    if (!formCard || !formCard.parentNode) return;
+    var anchor = formCard.nextSibling;
+    if (trustBadges) formCard.parentNode.insertBefore(trustBadges, anchor);
+    if (resultsWrap)  formCard.parentNode.insertBefore(resultsWrap, anchor);
+    if (teaserBox)    formCard.parentNode.insertBefore(teaserBox, anchor);
   }
 
   function showResults() {
@@ -318,7 +319,7 @@
     if (captureBox) captureBox.classList.add('visible');
     if (teaserBox) teaserBox.classList.add('visible');
     setTimeout(function() {
-      if (areaBox) areaBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      if (captureBox) captureBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }, 150);
   }
 
